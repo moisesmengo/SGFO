@@ -50,28 +50,40 @@ module.exports = app =>{
         }
     }
 
-    const get = (req,res)=>{
+    //consultas paginadas
+    const limit = 10
+
+    const get = async (req, res)=>{
+        const page = req.query.page || 1
+
+        const result = await app.db('fornecedores').count('id').first()
+        const count = parseInt(result.count)
+
         app.db('fornecedores')
-            .select('id', 'nome', 'email')
-            .then(fornecedores => res.json(fornecedores))
+            .select('id','nome','email')
+            .limit(limit).offset(page* limit - limit)
+            .then(fornecedores => res.json({data:fornecedores, count, limit}))
             .catch(err => res.status(500).send(err))
     }
-
-    const getById = (req, res)=>{
+        
+    const getById = (req,res)=>{
         app.db('fornecedores')
             .select('id', 'nome', 'email')
-            .where({id : req.params.id})
-            .first()
+            .where({id: req.params.id})
             .then(fornecedor => res.json(fornecedor))
             .catch(err => res.status(500).send(err))
     }
 
     const remove = async (req, res) =>{
-        const rowsDeleted =  await app.db('fornecedores')
-            .where({id: req.params.id}).del()
-            .then(_=> res.status(204).send())
-            .catch(err => res.status(500).send)
-        existsOrError(rowsDeleted, 'Fornecedor não encontrado')
+        try {
+            const rowsDeleted =  await app.db('fornecedores')
+                .where({id: req.params.id}).del()
+            existsOrError(rowsDeleted, 'Fornecedor não encontrado')
+
+            res.status(204).send()
+        } catch (error) {
+            res.status(500).send()
+        }
     }
 
     return {save, getById, get, remove}

@@ -47,10 +47,18 @@ module.exports = app =>{
         }
     }
 
-    const get = (req,res)=>{
+    const limit = 10
+
+    const get = async (req, res)=>{
+        const page = req.query.page || 1
+
+        const result = await app.db('admins').count('id').first()
+        const count = parseInt(result.count)
+
         app.db('admins')
-            .select('id', 'nome', 'email')
-            .then(admins => res.json(admins))
+            .select('id','nome','email')
+            .limit(limit).offset(page* limit - limit)
+            .then(admins => res.json({data:admins, count, limit}))
             .catch(err => res.status(500).send(err))
     }
 
@@ -63,11 +71,15 @@ module.exports = app =>{
     }
 
     const remove = async (req, res) =>{
-        const rowsDeleted =  await app.db('fornecedores')
-            .where({id: req.params.id}).del()
-            .then(_=> res.status(204).send())
-            .catch(err => res.status(500).send)
-        existsOrError(rowsDeleted, 'Fornecedor não encontrado')
+        try {
+            const rowsDeleted =  await app.db('admins')
+                .where({id: req.params.id}).del()
+            existsOrError(rowsDeleted, 'Administrador não encontrado')
+
+            res.status(204).send()
+        } catch (error) {
+            res.status(500).send()
+        }
     }
 
     return { save, get, getById, remove }
