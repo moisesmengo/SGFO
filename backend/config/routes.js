@@ -6,6 +6,7 @@ module.exports = app =>{
     app.route('/admins/:id')
         .get(app.api.admin.getById)
         .put(app.api.admin.save)
+        .delete(app.api.admin.remove)
     
     app.route('/fornecedores')
         .post(app.api.provider.save)
@@ -14,5 +15,6 @@ module.exports = app =>{
     app.route('/fornecedores/:id')
         .get(app.api.provider.getById)
         .put(app.api.provider.save)
+        .delete(app.api.provider.remove)
         
 }

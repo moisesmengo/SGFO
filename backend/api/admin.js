@@ -62,5 +62,13 @@ module.exports = app =>{
             .catch(err => res.status(500).send(err))
     }
 
-    return { save, get, getById }
+    const remove = async (req, res) =>{
+        const rowsDeleted =  await app.db('fornecedores')
+            .where({id: req.params.id}).del()
+            .then(_=> res.status(204).send())
+            .catch(err => res.status(500).send)
+        existsOrError(rowsDeleted, 'Fornecedor não encontrado')
+    }
+
+    return { save, get, getById, remove }
 }
