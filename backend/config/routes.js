@@ -1,4 +1,11 @@
 module.exports = app =>{
+    app.post('/signupAdmin', app.api.admin.save)
+    app.post('/signinAdmin', app.api.authAdmins.signinAdmin)
+    app.post('/validateTokenAdmin', app.api.authAdmins.validateTokenAdmin)
+
+    app.post('/signinProvider', app.api.authProvider.signinProvider)
+    app.post('/validateTokenProvider', app.api.authProvider.validateTokenProvider)
+    
     app.route('/admins')
         .post(app.api.admin.save)
         .get(app.api.admin.get)

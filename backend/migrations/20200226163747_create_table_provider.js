@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
       table.string('estado').notNull()
       table.string('endereco').notNull()
       table.string('imagem', 1000)
-      table.boolean('admin').notNull().defaultTo(false)
+      table.boolean('admin').defaultTo(false)
   })
 };
 
