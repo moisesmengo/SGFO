@@ -23,6 +23,7 @@ module.exports = app =>{
             id: admin.id,
             nome: admin.nome,
             email: admin.email,
+            admin: admin.admin,
             iat: now,
             exp: now + (60 * 60 * 24 * 3)
         }
