@@ -1,3 +1,5 @@
+const admin = require('./admin')
+
 module.exports = app =>{
     app.post('/signupAdmin', app.api.admin.save)
     app.post('/signinAdmin', app.api.authAdmins.signinAdmin)
@@ -8,18 +10,18 @@ module.exports = app =>{
     
     app.route('/admins')
         .all(app.config.passport.authenticate())
-        .post(app.api.admin.save)
-        .get(app.api.admin.get)
+        .post(admin(app.api.admin.save))
+        .get(admin(app.api.admin.get))
 
     app.route('/admins/:id')
         .all(app.config.passport.authenticate())
-        .get(app.api.admin.getById)
-        .put(app.api.admin.save)
-        .delete(app.api.admin.remove)        
+        .get(admin(app.api.admin.getById))
+        .put(admin(app.api.admin.save))
+        .delete(admin(app.api.admin.remove))        
     
     app.route('/fornecedores')
         //.all(app.config.passport.authenticate())
-        .get(app.api.provider.get)
+        .get((app.api.provider.get))
         .post(app.api.provider.save)
 
     app.route('/fornecedores/:id')
