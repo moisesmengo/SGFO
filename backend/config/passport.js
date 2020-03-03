@@ -3,23 +3,23 @@ const passport = require('passport')
 const passportJwt = require('passport-jwt')
 const { Strategy, ExtractJwt } = passportJwt
 
-module.exports = app =>{
+module.exports = app => {
     const params = {
         secretOrKey: authSecret,
-        jwtFromRequest:  ExtractJwt.fromAuthHeaderAsBearerToken()
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     }
 
-    const strategy = new Strategy(params, (payload, done) =>{
+    const strategy = new Strategy(params, (payload, done) => {
         app.db('admins')
             .where({ id: payload.id })
             .first()
-            .then(user => done(null, admin ? {...payload} : false))
+            .then(admin => done(null, admin ? { ...payload } : false))
             .catch(err => done(err, false))
     })
 
     passport.use(strategy)
 
-    return{
-        authenticate: () => passport.authenticate('jwt', {session: false})
+    return {
+        authenticate: () => passport.authenticate('jwt', { session: false })
     }
 }

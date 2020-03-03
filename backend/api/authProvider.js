@@ -5,17 +5,17 @@ const bcrypt = require('bcrypt-nodejs')
 module.exports = app =>{
     const signinProvider = async (req, res) => {
         if (!req.body.email || !req.body.senha) {
-            return res.status(400).send('Informe usuário e senha!')
+            return res.status(400).send('Informe usuário e senha! (Fornecedor)')
         }
 
         const fornecedor = await app.db('fornecedores')
             .where({ email: req.body.email })
             .first()
 
-        if (!fornecedor) return res.status(400).send('Usuário não encontrado!')
+        if (!fornecedor) return res.status(400).send('Fornecedor não encontrado!')
 
         const isMatch = bcrypt.compareSync(req.body.senha, fornecedor.senha)
-        if (!isMatch) return res.status(401).send('Email/Senha inválidos!')
+        if (!isMatch) return res.status(401).send('Email/Senha inválidos! (Fornecedor)')
 
         const now = Math.floor(Date.now() / 1000)
 
@@ -23,6 +23,7 @@ module.exports = app =>{
             id: fornecedor.id,
             nome: fornecedor.nome,
             email: fornecedor.email,
+            fornecedor: fornecedor.admin,
             iat: now,
             exp: now + (60 * 60 * 24 * 3)
         }
