@@ -39,6 +39,7 @@ module.exports = app =>{
         if(fornecedor.id){
             app.db('fornecedores')
                 .update(fornecedor)
+                .whereNull('deletedAt')
                 .where({id: fornecedor.id})
                 .then(_=> res.status(204).send())
                 .catch(err => res.status(500).send(err))
@@ -61,6 +62,7 @@ module.exports = app =>{
 
         app.db('fornecedores')
             .select('id','nome','email')
+            .whereNull('deletedAt')
             .limit(limit).offset(page* limit - limit)
             .then(fornecedores => res.json({data:fornecedores, count, limit}))
             .catch(err => res.status(500).send(err))
@@ -69,22 +71,27 @@ module.exports = app =>{
     const getById = (req,res)=>{
         app.db('fornecedores')
             .select('id', 'nome', 'email')
+            .whereNull('deletedAt')
             .where({id: req.params.id})
             .then(fornecedor => res.json(fornecedor))
             .catch(err => res.status(500).send(err))
     }
 
-    const remove = async (req, res) =>{
+    const block = async (req, res)=>{
         try {
-            const rowsDeleted =  await app.db('fornecedores')
-                .where({id: req.params.id}).del()
-            existsOrError(rowsDeleted, 'Fornecedor não encontrado')
+            //const fornecedores = await app.db('fornecedores')
+            //    .where({id: req.params.id})
+
+            const rowsUpdated = await app.db('fornecedores')
+                .update({deletedAt: new Date()})
+                .where({id: req.params.id})
+            existsOrError(rowsUpdated, 'Usuário não foi encontrado')
 
             res.status(204).send()
         } catch (error) {
-            res.status(500).send()
+            res.status(400).send(error)
         }
     }
 
-    return {save, getById, get, remove}
+    return {save, getById, get, block}
 }

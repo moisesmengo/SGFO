@@ -28,6 +28,6 @@ module.exports = app =>{
         //.all(app.config.passport.authenticate())
         .get(app.api.provider.getById)
         .put(app.api.provider.save)
-        .delete(app.api.provider.remove)
+        .delete(app.api.provider.block)
         
 }
