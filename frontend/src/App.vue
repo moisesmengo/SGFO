@@ -1,5 +1,5 @@
 <template>
-	<v-app>
+	<v-app id="app">
 		<Header/>
 		<v-content>
 			<v-container>
@@ -19,6 +19,17 @@ export default {
 </script>
 
 <style>
+	*{
+		font-family: "Lato", sans-serif;
+	}
 
+	body{
+		margin: 0;
+	}
+
+	#app{
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothin: grayscale;
+	}
 </style>
 
