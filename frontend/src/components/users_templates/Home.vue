@@ -1,22 +1,22 @@
 <template>
-    <v-layout class="pink home-content" row wrap>     
+    <v-layout class="blue darken-3 home-content" row wrap>     
         <div class="auth-modal">
-            <h1>Logo</h1>
+            <img src="../../../public/oleo.jpg" width="200" class="logo">
             <hr>
 
             <div class="auth-title">
                 {{ showSignup ? 'Cadastre-se como fornecedor' : 'Faça login'}}
             </div>
 
-            <input v-if="showSignup" type="text" name="nome" placeholder="Nome">
-            <input type="email" name="email" placeholder="E-mail">
-            <input v-if="showSignup" name="cidade" type="text" placeholder="Cidade">
-            <input v-if="showSignup" type="text" name="estado" placeholder="Estado">
-            <input v-if="showSignup" type="text" name="endereco" placeholder="Endereço">
-            <input type="password" name="senha" placeholder="Senha">
-            <input v-if="showSignup" name="confirmarSenha" type="password" placeholder="Confirme a Senha">
+            <input v-if="showSignup" v-model="fornecedor.nome" required type="text" name="nome" placeholder="Nome">
+            <input type="email" name="email" v-model="fornecedor.email" required placeholder="E-mail">
+            <input v-if="showSignup" name="cidade" type="text" v-model="fornecedor.cidade" required placeholder="Cidade">
+            <input v-if="showSignup" type="text" name="estado" v-model="fornecedor.estado" required placeholder="Estado">
+            <input v-if="showSignup" type="text" name="endereco" placeholder="Endereço" v-model="fornecedor.endereco" required>
+            <input type="password" name="senha" placeholder="Senha" v-model="fornecedor.senha" required>
+            <input v-if="showSignup" name="confirmarSenha" type="password" v-model="fornecedor.confirmarSenha" required placeholder="Confirme a Senha">
 
-            <button v-if="showSignup" >Cadastrar</button>
+            <button v-if="showSignup" @click="salvar">Cadastrar</button>
             <button v-else >Entrar</button>
 
             <a href @click.prevent="showSignup = !showSignup">
@@ -28,13 +28,29 @@
     </v-layout>
 </template>
 <script>
+import axios from 'axios'
+import { baseApiUrl, showError } from '../../global'
+
 export default {
     data() {
         return {
             showSignup: true,
-            provider:{},
+            fornecedor: {},
         }
     },
+    methods:{
+        reset(){
+            this.fornecedor = {}
+        },
+        salvar(){
+            axios.post(`${baseApiUrl}/fornecedores`, this.fornecedor)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                    this.reset()
+                })
+                .catch(showError)
+        }
+    }
 }
 </script>
 <style lang="css">
@@ -91,6 +107,10 @@ export default {
             rgba(120, 120, 120, 0.75),
             rgba(120, 120, 120, 0)
             );
+    }
+
+    .auth-modal .logo{
+        margin-bottom: 5px;
     }
 
 </style>

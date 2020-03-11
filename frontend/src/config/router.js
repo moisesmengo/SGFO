@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from './components/users_templates/Home'
-import About from './components/users_templates/about/About'
-import Contact from './components/users_templates/contact/Contact'
-import LoginAdmin from './components/users_templates/admin_login/LoginAdmin'
+import Home from '../components/users_templates/Home'
+import About from '../components/users_templates/about/About'
+import Contact from '../components/users_templates/contact/Contact'
+import LoginAdmin from '../components/users_templates/admin_login/LoginAdmin'
 
 Vue.use(Router)
 

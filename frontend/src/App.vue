@@ -7,14 +7,17 @@
 
 				</router-view>
 			</v-container>
+			
 		</v-content>
+		<Footer/>
 	</v-app>
 </template>
 
 <script>
 import Header from './components/users_templates/Header'
+import Footer from './components/users_templates/Footer'
 export default {
-	components: { Header, },
+	components: { Header, Footer },
 }
 </script>
 
@@ -23,13 +26,12 @@ export default {
 		font-family: "Lato", sans-serif;
 	}
 
-	body{
-		margin: 0;
-	}
-
+	
 	#app{
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothin: grayscale;
+
+		height: 100vh;
 	}
 </style>
 
