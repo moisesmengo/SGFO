@@ -55,7 +55,7 @@ export default {
 </script>
 <style lang="css">
     .home-content{
-        height: 600px;
+        height: 100vh;
         display: flex;
         justify-content: flex-end;
         align-items: center;

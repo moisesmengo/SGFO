@@ -27,6 +27,6 @@
     "pm2": "3.0.4"
   },
   "devDependencies": {
-    "nodemon": "1.18.4"
+    "nodemon": "^1.19.4"
   }
 }
