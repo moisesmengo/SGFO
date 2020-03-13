@@ -5,6 +5,7 @@ import Home from '../components/users_templates/Home'
 import About from '../components/users_templates/about/About'
 import Contact from '../components/users_templates/contact/Contact'
 import LoginAdmin from '../components/users_templates/admin_login/LoginAdmin'
+import Fornecedor from '../AppProvider'
 
 Vue.use(Router)
 
@@ -15,5 +16,6 @@ export default new Router({
         { path: '/contato', component: Contact },
         { path: '/sobre', component: About },
         { path: '/administracao', component: LoginAdmin },
+        { path: '/fornecedor', component: Fornecedor}
     ]
 })

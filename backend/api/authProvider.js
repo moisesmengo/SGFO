@@ -43,12 +43,15 @@ module.exports = app =>{
                     return res.send(true)
                 }
             }
-        } catch(e) {
-            // problema com o token
+        } catch(err) {
+            return Promise.reject('Oops!').catch(err => {
+                throw new Error(err);
+              });
         }
 
         res.send(false)
     }
+    
 
     return { signinProvider, validateTokenProvider }
 }

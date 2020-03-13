@@ -17,7 +17,7 @@
             <input v-if="showSignup" name="confirmarSenha" type="password" v-model="fornecedor.confirmarSenha" required placeholder="Confirme a Senha">
 
             <button v-if="showSignup" @click="salvar">Cadastrar</button>
-            <button v-else >Entrar</button>
+            <button v-else @click="signin">Entrar</button>
 
             <a href @click.prevent="showSignup = !showSignup">
                 <span v-if="showSignup">Já é fornecedor? Acesse o Login!</span>
@@ -29,7 +29,7 @@
 </template>
 <script>
 import axios from 'axios'
-import { baseApiUrl, showError } from '../../global'
+import { baseApiUrl, showError, providerKey } from '../../global'
 
 export default {
     data() {
@@ -49,7 +49,16 @@ export default {
                     this.reset()
                 })
                 .catch(showError)
-        }
+        },
+        signin() {
+            axios.post(`${baseApiUrl}/signinProvider`, this.fornecedor)
+                .then(res => {
+                    this.$store.commit('setProvider', res.data)
+                    localStorage.setItem(providerKey, JSON.stringify(res.data))
+                    this.$router.push({ path: '/fornecedor' })
+                }).catch(showError)
+                
+        },
     }
 }
 </script>

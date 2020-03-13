@@ -11,8 +11,9 @@
         <v-card-text>
         <v-form>
             <v-text-field
-            label="Login"
+            label="Email"
             name="login"
+            v-model="admin.email"
             prepend-icon="person"
             type="text"
             ></v-text-field>
@@ -21,6 +22,7 @@
             id="senha"
             label="Senha"
             name="senha"
+            v-model="admin.senha"
             prepend-icon="lock"
             type="password"
             ></v-text-field>
@@ -28,19 +30,37 @@
         </v-card-text>
         <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn class="primary">Login</v-btn>
+        <v-btn class="primary" @click="signin">Login</v-btn>
         </v-card-actions>
     </v-card>
-        </v-flex>
+    </v-flex>
     </v-layout>
 </template>
 <script>
+import axios from 'axios'
+import { baseApiUrl, showError, adminKey } from '../../../global'
+
 export default {
     data() {
         return {
             drawer: null,
+            admin: {},
         }
     },
+    methods:{
+        reset(){
+            this.admin = {}
+        },
+        signin() {
+            axios.post(`${baseApiUrl}/signinAdmin`, this.admin)
+                .then(res => {
+                    this.$store.commit('setAdmin', res.data)
+                    localStorage.setItem(adminKey, JSON.stringify(res.data))
+                    this.$router.push({ path: '/' })
+                }).catch(showError)
+                
+        },
+    }
 }
 </script>
 <style lang="css">
