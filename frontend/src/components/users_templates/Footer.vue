@@ -1,13 +1,7 @@
 <template>
-  <v-footer color="blue-grey lighten-4 " padless>
-    <v-row justify="center" no-gutters>
-      <v-col
-        class=" lighten-2 py-4 text-center white--text" cols="12"
-      >
-      {{ new Date().getFullYear() }} — <strong>IFRN</strong>
-      </v-col>
-    </v-row>
-  </v-footer>
+  <footer class="footer">
+    <span>Copyright <strong></strong>© {{ new Date().getFullYear() }} - IFRN</span>
+  </footer>
 </template>
 
 <script>
@@ -21,5 +15,12 @@ export default {
 }
 </script>
 <style lang="css">
-    
+    .footer {
+      background-color: #E0E0E0;
+      color: #333;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 </style>

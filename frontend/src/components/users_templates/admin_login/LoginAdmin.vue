@@ -2,7 +2,7 @@
     <v-layout align-center justify-center>
     <v-flex xs12 sm8 md4 >
     <v-card class="elevation-5">
-        <v-toolbar class="blue-grey darken-2" dark flat >
+        <v-toolbar class="blue darken-3" dark flat >
 
             <v-toolbar-title>Login Administração</v-toolbar-title>
             <v-spacer></v-spacer>

@@ -20,7 +20,6 @@ module.exports = app =>{
         .delete(admin(app.api.admin.remove))        
     
     app.route('/fornecedores')
-        .all(app.config.passport.authenticate())
         .get((app.api.provider.get))
         .post(app.api.provider.save)
 
