@@ -7,15 +7,12 @@
 <script>
 
 export default {
-    data() {
-        return {
-           
-        }
-    },
+    name: "Footer"
 }
 </script>
 <style lang="css">
     .footer {
+      grid-area: footer;
       background-color: #E0E0E0;
       color: #333;
 
