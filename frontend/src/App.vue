@@ -1,6 +1,6 @@
 <template>
 	<div id="app" :class="{'hide-menu': !isMenuVisible}">
-		<Header title="Sistema de Fornecimento" :hideToggle="true"/>
+		<Header title="Sistema de Fornecimento" :hideToggle="true" :admin="false"/>
 		<Menu/>
 		<Content/>
 		<Footer/>
