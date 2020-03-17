@@ -8,7 +8,8 @@
             <v-spacer v-show="logado"></v-spacer>
 
             <v-toolbar-title class="headline text-uppercase mr-4">
-                <span class="font-weight-light title" > {{ title }} </span>
+                <span class="font-weight-light title" > 
+                <router-link to="/">{{ title }}</router-link> </span>
             </v-toolbar-title>
 
             <v-toolbar-items v-show="!logado">
@@ -136,6 +137,14 @@ export default {
         color: #fff;
     }
 
+    .title a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .title a:hover{
+        color: #fff;
+        text-decoration: none;
+    }
     .toggle i{
         background: none;
     }

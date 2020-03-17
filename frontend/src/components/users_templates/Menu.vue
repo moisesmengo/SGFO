@@ -14,7 +14,7 @@ export default {
 <style lang="css">
     .menu{
         grid-area: menu;
-        background: linear-gradient(to right, #536DFE, #8C9EFF);
+        background: linear-gradient(to right, #263238, #455A64);
 
         display: flex;
         flex-direction: column;
