@@ -1,5 +1,6 @@
-<template>
-    <v-layout class="blue darken-3 home-content" row wrap>     
+<template >
+    <v-layout class="blue darken-3 home-content" row wrap> 
+        <Titles icon="fa fa-home" main="teste"></Titles>    
         <div class="auth-modal">
             <img src="../../../public/oleo.jpg" width="200" class="logo">
             <hr>
@@ -30,7 +31,7 @@
 <script>
 import axios from 'axios'
 import { baseApiUrl, showError, providerKey } from '../../global'
-
+import Titles from './Titles'
 export default {
     data() {
         return {
@@ -38,6 +39,7 @@ export default {
             fornecedor: {},
         }
     },
+    components:{ Titles },
     methods:{
         reset(){
             this.fornecedor = {}

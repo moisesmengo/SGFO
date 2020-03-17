@@ -1,21 +1,46 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 import Home from '../components/users_templates/Home'
 import About from '../components/users_templates/about/About'
 import Contact from '../components/users_templates/contact/Contact'
 import LoginAdmin from '../components/users_templates/admin_login/LoginAdmin'
-import Fornecedor from '../AppProvider'
+import AdminData from '../components/users_templates/admin_pages/AdminData'
+import Settings from '../components/users_templates/admin_pages/Settings'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+const routes = [{ 
+        name: 'home', 
+        path: '/', 
+        component: Home 
+    }, { 
+        name: 'contato', 
+        path: '/contato',
+        component: Contact 
+    }, { 
+        name: 'sobre', 
+        path: '/sobre', 
+        component: About 
+    }, { 
+        name: 'login-admin',
+        path: '/administracao',
+        component: LoginAdmin 
+    }, {
+        name: 'perfil',
+        path:  '/perfil-admin',
+        component: AdminData
+    }, {
+        name:'configuracoes',
+        path:'/configuracoes',
+        component: Settings
+    }
+    
+]
+
+const router = new VueRouter({
     mode: 'history',
-    routes: [
-        { path: '/', component: Home },
-        { path: '/contato', component: Contact },
-        { path: '/sobre', component: About },
-        { path: '/administracao', component: LoginAdmin },
-        { path: '/fornecedor', component: Fornecedor}
-    ]
+    routes
 })
+
+export default router

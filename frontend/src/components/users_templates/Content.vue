@@ -1,17 +1,23 @@
 <template>
     <div class="content">
-        
+        <router-view>
+            
+        </router-view>
     </div>
 </template>
+
 <script>
+
 export default {
-    name: 'Content'
+    name: 'Content',
+    
 }
 </script>
-<style lang="css">
-    .content{
+
+<style>
+    .content {
         grid-area: content;
-        background-color:#E8EAF6;
+        background-color: #fff;
         padding: 20px;
     }
 </style>

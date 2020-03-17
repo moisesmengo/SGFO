@@ -1,58 +1,78 @@
 <template>
     <header class="header">
-        <v-toolbar app>
-        <a class="toggle" @click="toggleMenu" v-if="hideToggle">
-            <i class="fa fa-lg" :class="icon"></i>
-        </a>
+        <v-toolbar app class="teal lighten-2 white--text" >
+            <a class="toggle" @click="toggleMenu" v-if="hideToggle">
+                <i class="material-icons" :class="icon">{{icon}}</i>
+            </a>
 
-        <v-spacer v-show="logado"></v-spacer>
+            <v-spacer v-show="logado"></v-spacer>
 
-        <v-toolbar-title class="headline text-uppercase mr-4">
-            <span class="font-weight-light title" > {{ title }} </span>
-        </v-toolbar-title>
+            <v-toolbar-title class="headline text-uppercase mr-4">
+                <span class="font-weight-light title" > {{ title }} </span>
+            </v-toolbar-title>
 
-        <v-toolbar-items v-show="!logado">
-            <v-btn flat to="/">Início</v-btn>
-            <v-btn flat to="/contato">Contato</v-btn>
-            <v-btn flat to="/sobre">Sobre</v-btn>
-        </v-toolbar-items>
+            <v-toolbar-items v-show="!logado">
+                <v-btn flat to="/">Início</v-btn>
+                <v-btn flat to="/contato">Contato</v-btn>
+                <v-btn flat to="/sobre">Sobre</v-btn>
+            </v-toolbar-items>
 
-        <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
 
-        <v-toolbar-items v-show="!logado">
-            <v-btn flat to="/administracao">Área do Administrador</v-btn>
-        </v-toolbar-items>
+            <v-toolbar-items v-show="!logado">
+                <v-btn flat to="/administracao">Área do Administrador</v-btn>
+            </v-toolbar-items>
 
-        <v-toolbar-items>
-            <v-menu offset-y>
-                <v-btn flat slot="activator" 
-                    v-if="admin && logado"
-                >{{adm.nome}}</v-btn>
+            <v-toolbar-items >
+                <v-menu offset-y >
+                    <v-btn flat slot="activator" 
+                        v-if="admin && logado" 
+                        class="white--text"
+                    >{{adm.nome}}</v-btn>
 
-                <v-btn flat slot="activator" 
-                    v-if="!admin && logado"
-                >{{fornecedor.nome}}</v-btn>
+                    <v-btn flat slot="activator" 
+                        v-if="!admin && logado"
+                        class="white--text"
+                    >{{fornecedor.nome}}</v-btn>
 
-                <v-list>
-                    <a href="" class="menu-user-component">
-                        <v-list-tile>
-                            Perfil
-                        </v-list-tile>
-                    </a>
-                    <a href="" class="menu-user-component"> 
-                        <v-list-tile>
-                            Configurações
-                        </v-list-tile>
-                    </a>
-                    <a href="" class="menu-user-component"> 
-                        <v-list-tile>
-                            Sair
-                        </v-list-tile>
-                    </a>
-                </v-list>
-            </v-menu>
-        </v-toolbar-items>
-    </v-toolbar>
+                    <v-list v-if="admin && logado">
+                        <router-link to="/perfil-admin" class="menu-user-component">
+                            <v-list-tile>
+                                Perfil
+                            </v-list-tile>
+                        </router-link>
+                        <router-link to="/configuracoes" class="menu-user-component">
+                            <v-list-tile>
+                                Configurações
+                            </v-list-tile>
+                        </router-link>
+                        <router-link to="" class="menu-user-component">
+                            <v-list-tile>
+                                Sair
+                            </v-list-tile>
+                        </router-link>
+                    </v-list>
+
+                    <v-list v-if="!admin && logado">
+                        <a href="" class="menu-user-component">
+                            <v-list-tile>
+                                Perfil cu
+                            </v-list-tile>
+                        </a>
+                        <a href="" class="menu-user-component"> 
+                            <v-list-tile>
+                                Configurações cu
+                            </v-list-tile>
+                        </a>
+                        <a href="" class="menu-user-component"> 
+                            <v-list-tile>
+                                Sair cu
+                            </v-list-tile>
+                        </a>
+                    </v-list>
+                </v-menu>
+            </v-toolbar-items>
+        </v-toolbar>
     </header>
 </template>
 <script>
@@ -72,7 +92,7 @@ export default {
             logado: 'logado'
         }),
         icon(){
-            return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down" 
+            return this.$store.state.isMenuVisible ? "menu_open" : "menu" 
         }, 
         
     },
@@ -112,8 +132,12 @@ export default {
     }
 
     .v-list__tile:hover{
-        background-color:#8C9EFF ;
+        background-color:#4DB6AC ;
         color: #fff;
+    }
+
+    .toggle i{
+        background: none;
     }
     
 </style>

@@ -1,8 +1,8 @@
 <template>
 	<div id="app" :class="{'hide-menu': !isMenuVisible}">
-		<Header title="Sistema de Fornecimento" :hideToggle="true" :admin="false"/>
+		<Header title="Sistema de Fornecimento" :hideToggle="true" :admin="true"/>
 		<Menu/>
-		<Content/>
+			<Content/>
 		<Footer/>
 	</div>
 </template>
