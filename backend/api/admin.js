@@ -50,15 +50,9 @@ module.exports = app =>{
     const limit = 10
 
     const get = async (req, res)=>{
-        const page = req.query.page || 1
-
-        const result = await app.db('admins').count('id').first()
-        const count = parseInt(result.count)
-
         app.db('admins')
             .select('id','nome','email')
-            .limit(limit).offset(page* limit - limit)
-            .then(admins => res.json({data:admins, count, limit}))
+            .then(admins => res.json(admins))
             .catch(err => res.status(500).send(err))
     }
 

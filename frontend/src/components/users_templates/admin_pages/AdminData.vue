@@ -1,6 +1,7 @@
 <template>
     <div>
         <Titles icon="account_circle" main="Meus Dados"/>
+        
     </div>
 </template>
 <script>

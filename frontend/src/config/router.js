@@ -7,6 +7,7 @@ import Contact from '../components/users_templates/contact/Contact'
 import LoginAdmin from '../components/users_templates/admin_login/LoginAdmin'
 import AdminData from '../components/users_templates/admin_pages/AdminData'
 import Settings from '../components/users_templates/admin_pages/Settings'
+import Admins from '../components/users_templates/admin_pages/Admins'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,10 @@ const routes = [{
         name:'configuracoes',
         path:'/configuracoes',
         component: Settings
+    }, {
+        name: 'gerenciaAdmins',
+        path: '/administradores',
+        component: Admins
     }
     
 ]

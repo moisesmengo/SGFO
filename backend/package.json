@@ -16,6 +16,7 @@
     "consign": "0.1.6",
     "cors": "2.8.4",
     "express": "4.16.3",
+    "express-load": "^1.1.16",
     "jwt-simple": "0.5.1",
     "knex": "^0.15.2",
     "moment": "2.22.2",
