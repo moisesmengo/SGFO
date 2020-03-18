@@ -5,7 +5,7 @@
                 <i class="material-icons" :class="icon">{{icon}}</i>
             </a>
 
-            <v-spacer v-show="logado"></v-spacer>
+            
 
             <v-toolbar-title class="headline text-uppercase mr-4">
                 <span class="font-weight-light title" > 
@@ -13,19 +13,19 @@
             </v-toolbar-title>
 
             <v-toolbar-items v-show="!logado">
-                <v-btn flat to="/">Início</v-btn>
-                <v-btn flat to="/contato">Contato</v-btn>
-                <v-btn flat to="/sobre">Sobre</v-btn>
+                <v-btn flat to="/" class="white--text">Início</v-btn>
+                <v-btn flat to="/contato" class="white--text">Contato</v-btn>
+                <v-btn flat to="/sobre" class="white--text">Sobre</v-btn>
             </v-toolbar-items>
 
             <v-spacer></v-spacer>
 
             <v-toolbar-items v-show="!logado">
-                <v-btn flat to="/administracao">Área do Administrador</v-btn>
+                <v-btn flat to="/administracao" class="white--text">Área do Administrador</v-btn>
             </v-toolbar-items>
 
             <v-toolbar-items >
-                <v-menu offset-y >
+                <v-menu offset-y class="user-area-menu">
                     <v-btn flat slot="activator" 
                         v-if="admin && logado" 
                         class="white--text"
@@ -124,22 +124,24 @@ export default {
     }
 
     .header .toggle:hover{
-        background-color: rgba(0, 0, 0, 0.15);
+        background-color: rgba(0, 0, 0, 0.158);
     }
 
     .menu-user-component{
         text-decoration: none;
         color: #000;
     }
-
+    .user-area-menu:hover{
+        background-color: rgba(0, 0, 0, 0.158);
+    }
     .v-list__tile:hover{
         background-color:#4DB6AC ;
         color: #fff;
     }
-
     .title a{
         color: #fff;
         text-decoration: none;
+        font-size: 1.3rem;
     }
     .title a:hover{
         color: #fff;

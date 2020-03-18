@@ -1,7 +1,27 @@
 <template >
-    <v-layout class="blue darken-3 home-content" row wrap> 
-        <Titles icon="fa fa-home" main="teste"></Titles>    
-        <div class="auth-modal">
+   <div class="home">
+       <Titles
+            icon="home"
+            main="Início"
+            v-show="logado && adm"
+       />
+
+       <div class="stats">
+           <Stat
+                title="Fornecedores" :value="10"
+                icon="supervised_user_circle" color="#E0F7FA"
+           />
+           <Stat
+                title="Óleo em Estoque" :value="10 + ' litros'"
+                icon="widgets" color="#EEFF41"
+           />
+           <Stat
+                title="Qualquer Coisa" :value="15"
+                icon="bug_report" color="#FF8A65"
+           />
+       </div>
+
+       <div class="auth-modal" v-show="!logado">
             <img src="../../../public/oleo.jpg" width="200" class="logo">
             <hr>
 
@@ -26,12 +46,15 @@
             </a>
 
         </div>
-    </v-layout>
+   </div>
 </template>
 <script>
 import axios from 'axios'
 import { baseApiUrl, showError, providerKey } from '../../global'
 import Titles from './Titles'
+import { mapState } from 'vuex'
+import Stat from '../users_templates/admin_pages/Stat'
+
 export default {
     data() {
         return {
@@ -39,7 +62,14 @@ export default {
             fornecedor: {},
         }
     },
-    components:{ Titles },
+    computed:{
+        ...mapState({
+            adm: 'admin',
+            provider: 'fornecedor',
+            logado: 'logado'
+        }),
+    },
+    components:{ Titles, Stat },
     methods:{
         reset(){
             this.fornecedor = {}
@@ -65,12 +95,7 @@ export default {
 }
 </script>
 <style lang="css">
-    .home-content{
-        height: 100vh;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
+
     .auth-modal{
         background-color:#fff ;
         width: 350px;
@@ -98,6 +123,13 @@ export default {
         outline: none;
     }
 
+    .stats{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
     .auth-modal button{
         align-self: flex-end;
         background-color: #2460ae;
@@ -107,6 +139,13 @@ export default {
 
     .auth-modal a {
         margin-top: 25px;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .auth-modal a:hover{
+        background-color: #4DB6AC;
+        color: #fff;
     }
 
     .auth-modal hr{
