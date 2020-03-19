@@ -61,7 +61,7 @@ module.exports = app =>{
         const count = parseInt(result.count)
 
         app.db('fornecedores')
-            .select('id','nome','email')
+            .select('id','nome','email', 'cidade')
             .whereNull('deletedAt')
             .limit(limit).offset(page* limit - limit)
             .then(fornecedores => res.json({data:fornecedores, count, limit}))
@@ -70,7 +70,7 @@ module.exports = app =>{
         
     const getById = (req,res)=>{
         app.db('fornecedores')
-            .select('id', 'nome', 'email')
+            .select('id', 'nome', 'email', 'cidade', 'estado', 'endereco', 'telefone')
             .whereNull('deletedAt')
             .where({id: req.params.id})
             .then(fornecedor => res.json(fornecedor))

@@ -118,8 +118,6 @@ export default {
             const url = `${baseApiUrl}/admins`
             axios.get(url).then(res =>{          
                 this.admins = res.data
-                // eslint-disable-next-line
-                console.log(this.admins)
             })
         }, 
         reset(){

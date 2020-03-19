@@ -8,6 +8,7 @@ import LoginAdmin from '../components/users_templates/admin_login/LoginAdmin'
 import AdminData from '../components/users_templates/admin_pages/AdminData'
 import Settings from '../components/users_templates/admin_pages/Settings'
 import Admins from '../components/users_templates/admin_pages/Admins'
+import Providers from '../components/users_templates/admin_pages/Providers'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,10 @@ const routes = [{
         name: 'gerenciaAdmins',
         path: '/administradores',
         component: Admins
+    }, {
+        name: 'gerenciaFornecedores',
+        path: '/fornecedores',
+        component: Providers
     }
     
 ]
