@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './config/router'
 import './config/msgs'
 import store from './config/store'
+import './config/bootstrap'
 
 Vue.config.productionTip = false
 
