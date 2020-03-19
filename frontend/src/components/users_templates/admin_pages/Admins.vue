@@ -14,6 +14,7 @@
                         <b-form-input
                             id="admin-name" type="text" v-model="admin.nome"
                             placeholder="Informe o nome do administrador"
+                            :readonly="mode === 'remove'"
                         />       
                     </b-form-group>
                 </b-col>
@@ -22,12 +23,13 @@
                         <b-form-input
                             id="admin-email" type="text" v-model="admin.email"
                             placeholder="Informe o e-mail do administrador"
+                            :readonly="mode === 'remove'"
                         />       
                     </b-form-group>
                 </b-col>
             </b-row>
 
-            <b-row>
+            <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
                     <b-form-group label="Senha:" label-for="admin-password">
                         <b-form-input
@@ -45,22 +47,28 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-button 
-                variant="primary" 
-                v-if="mode === 'save'"
-                @click="save"
-            >Salvar</b-button>
-            <b-button 
-                variant="danger" 
-                v-if="mode === 'remove'"
-                @click="remove"
-            >Excluir</b-button>
-            <b-button 
-                class="ml-2" 
-                @click="reset"
-            >Cancelar</b-button>
+            <b-row>
+                <b-col xs="12">
+                    <b-button 
+                    variant="primary" 
+                    v-if="mode === 'save'"
+                    @click="save"
+                    >Salvar</b-button>
+                    <b-button 
+                        variant="danger" 
+                        v-if="mode === 'remove'"
+                        @click="remove"
+                    >Excluir</b-button>
+                    <b-button 
+                        class="ml-2" 
+                        @click="reset"
+                    >Cancelar</b-button>
+                </b-col>
+            </b-row>
         </b-form>
+
         <hr>
+
         <div class="content-table-admins">
             <div class="filter-and-title">  
                 <b-form-input :v-model="search" placeholder="Buscar..."></b-form-input>
@@ -70,10 +78,15 @@
                     hover striped 
                     :items="this.admins" 
                     :fields="fields">
+                    <template slot="acoes" slot-scope="data">
+                        <b-button class="icon-remove" variant="danger" @click="loadAdmin(data.item, 'remove')">
+                            <i class="fa fa-trash"></i>
+                        </b-button>
+                    </template>
                 </b-table>
             </div>
             <div class="content-pages">
-                <span> < </span> <span> ></span>
+                <span> voltar </span> <span> avançar</span>
             </div>
         </div>
 
@@ -81,7 +94,7 @@
 </template>
 <script>
 import axios from 'axios'
-import { baseApiUrl, shoeError, showError } from '../../../global'
+import { baseApiUrl, showError } from '../../../global'
 import Titles from '../Titles'
 export default {
     name: 'Admins',
@@ -130,6 +143,10 @@ export default {
                     this.$toasted.global.defaultSuccess()
                     this.reset()
                 }).catch(showError)
+        },
+        loadAdmin(admin, mode = 'save'){
+            this.mode = mode
+            this.admin = {...admin}
         }
     },
     mounted(){
@@ -156,4 +173,5 @@ export default {
     .filter-and-title input{
         width: 40%;
     }
+   
 </style>

@@ -5,8 +5,6 @@
                 <i class="material-icons" :class="icon">{{icon}}</i>
             </a>
 
-            
-
             <v-toolbar-title class="headline text-uppercase mr-4">
                 <span class="font-weight-light title" > 
                 <router-link to="/">{{ title }}</router-link> </span>
