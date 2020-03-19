@@ -81,7 +81,7 @@
 </template>
 <script>
 import axios from 'axios'
-import { baseApiUrl } from '../../../global'
+import { baseApiUrl, shoeError, showError } from '../../../global'
 import Titles from '../Titles'
 export default {
     name: 'Admins',
@@ -108,6 +108,28 @@ export default {
                 // eslint-disable-next-line
                 console.log(this.admins)
             })
+        }, 
+        reset(){
+            this.mode = 'save'
+            this.admin = {}
+            this.loadAdmins()
+        },
+        save(){
+            const method = this.admin.id ? 'put': 'post'
+            const id = this.admin.id ? `/${this.admin.id}` : ''
+            axios[method](`${baseApiUrl}/admins${id}`, this.admin)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                    this.reset()
+                }).catch(showError)       
+        },
+        remove(){
+            const id = this.admin.id
+            axios.delete(`${baseApiUrl}/admins/${id}`)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                    this.reset()
+                }).catch(showError)
         }
     },
     mounted(){
