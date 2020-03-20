@@ -52,7 +52,7 @@ module.exports = app =>{
     }
 
     //consultas paginadas
-    const limit = 10
+    const limit = 5
 
     const get = async (req, res)=>{
         const page = req.query.page || 1

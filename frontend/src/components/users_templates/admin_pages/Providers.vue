@@ -9,7 +9,7 @@
             <b-row>
                 <b-col md="4" sm="12">
                     <div class="image-and-name">
-                        <img src="" width="100px" height="150px" >
+                        <img :src="fornecedor.imagemUrl" width="100px" height="150px" >
                         <span>{{fornecedor.nome}}</span>
                     </div>
                 </b-col>
@@ -110,7 +110,11 @@
                 </b-table>
             </div>
             <div class="content-pages-provider">
-                <span> voltar </span> <span> avançar</span>
+                <b-pagination size="md"
+                    v-model="page"
+                    :total-rows="count"
+                    :per-page="limit"
+                ></b-pagination>
             </div>
         </div>
     </div>
@@ -142,7 +146,7 @@ export default {
     },
     methods:{
         loadProviders(){
-            const url = `${baseApiUrl}/fornecedores`
+            const url = `${baseApiUrl}/fornecedores?page=${this.page}`
             axios.get(url).then(res => {
                 this.fornecedores = res.data.data
                 this.count = res.data.count
@@ -167,9 +171,13 @@ export default {
                 .then(res=> this.fornecedor = res.data)
         },
     },
+    watch:{
+        page(){
+            this.loadProviders()
+        }
+    },
     mounted(){
         this.loadProviders()
-        console.log(this.fornecedor.nome)
     }
 }
 </script>
@@ -199,7 +207,7 @@ export default {
     }
     .content-pages-provider{
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
     }
     .filter-and-title-provider input{
         width: 40%;
