@@ -5,7 +5,7 @@
             icon="folder_shared"
         />
 
-        <div class="format-data" v-show="mode === 'edit'">
+        <div class="format-data" v-show="mode === 'view' || mode === 'remove'">
             <b-row>
                 <b-col md="4" sm="12">
                     <div class="image-and-name">
@@ -20,9 +20,9 @@
                                 <b-col md="12" sm="12">
                                     <b-form-group label="E-mail:" label-for="provider-email">
                                         <b-form-input
-                                            id="provider-email" type="text"
-                                            placeholder="Informe o e-mail do administrador"
-                                            :readonly="mode === 'edit'"
+                                            id="provider-email" type="text" 
+                                            :readonly="mode === 'remove' || mode=== 'view'" 
+                                            v-model="fornecedor.email"
                                         />       
                                     </b-form-group>
                                 </b-col>
@@ -31,18 +31,18 @@
                                 <b-col md="9" sm="12">
                                     <b-form-group label="Cidade:" label-for="provider-city">
                                         <b-form-input
-                                            id="provider-city" type="text"
-                                            placeholder="Informe o e-mail do administrador"
-                                            :readonly="mode === 'edit'"
+                                            id="provider-city" type="text"                                            
+                                            :readonly="mode === 'remove' || mode=== 'view'" 
+                                            v-model="fornecedor.cidade"
                                         />       
                                     </b-form-group>
                                 </b-col>
                                 <b-col md="3" sm="12">
-                                    <b-form-group label="Estado:" label-for="admin-email">
+                                    <b-form-group label="Estado:" label-for="admin-estado">
                                         <b-form-input
-                                            id="admin-email" type="text"
-                                            placeholder="Informe o e-mail do administrador"
-                                            :readonly="mode === 'edit'"
+                                            id="admin-estado" type="text"
+                                            :readonly="mode === 'remove' || mode=== 'view'" 
+                                            v-model="fornecedor.estado"
                                         />       
                                     </b-form-group>
                                 </b-col>
@@ -51,9 +51,9 @@
                                 <b-col md="12" sm="12">
                                     <b-form-group label="Endereço:" label-for="provider-address">
                                         <b-form-input
-                                            id="provider-address" type="text"
-                                            placeholder="Informe o e-mail do administrador"
-                                            :readonly="mode === 'edit'"
+                                            id="provider-address" type="text"                                            
+                                            :readonly="mode === 'remove' || mode=== 'view'" 
+                                            v-model="fornecedor.endereco"
                                         />       
                                     </b-form-group>
                                 </b-col>
@@ -62,13 +62,26 @@
                                 <b-col md="12" sm="12">
                                     <b-form-group label="Telefone:" label-for="provider-phone">
                                         <b-form-input
-                                            id="provider-phone" type="text"
-                                            placeholder="Informe o e-mail do administrador"
-                                            :readonly="mode === 'edit'"
+                                            id="provider-phone" type="text"                                            
+                                            :readonly="mode === 'remove' || mode=== 'view'" 
+                                            v-model="fornecedor.telefone"
                                         />       
                                     </b-form-group>
                                 </b-col>
                             </b-row>
+                                <b-row>
+                                    <b-col xs="12">
+                                        <b-button 
+                                            variant="danger" 
+                                            v-if="mode === 'remove'"
+                                            @click="remove"
+                                            class="mr-2" 
+                                        >Bloquear</b-button>
+                                        <b-button 
+                                            @click="reset"
+                                        >Cancelar</b-button>
+                                    </b-col>
+                                </b-row>
                         </b-form>
                     </div>
                 </b-col>
@@ -84,13 +97,13 @@
             <div class="table-provider">
                 <b-table 
                     hover striped 
-                    :items="this.fornecedores" 
+                    :items="fornecedores" 
                     :fields="fields">
                     <template slot="acoes" slot-scope="data">
-                        <b-button variant="danger" @click="loadProvider(data.item, 'remove')">
+                        <b-button variant="danger" @click="loadProvider(data.item, 'remove')" class="mr-2">
                             <i class="fa fa-trash"></i>
                         </b-button>
-                        <b-button variant="success" @click="blockProvider(data.item, 'remove')">
+                        <b-button variant="success" @click="loadProvider(data.item, 'view')">
                             <i class="fa fa-eye"></i>
                         </b-button>
                     </template>
@@ -112,7 +125,7 @@ export default {
     data() {
         return {
             search: '',
-            mode: 'none',
+            mode: null,
             fornecedor: {},
             fornecedores: [],
             fields:[
@@ -137,10 +150,10 @@ export default {
             })
         },
         reset(){
-            this.mode = 'none'
+            this.mode = null
             this.loadProviders()
         },
-        blockProvider(){
+        remove(){
             const id = this.fornecedor.id
             axios.delete(`${baseApiUrl}/fornecedores/${id}`)
                 .then(()=>{
@@ -148,7 +161,7 @@ export default {
                     this.reset()
                 }).catch(showError)
         },
-        loadProvider(fornecedor, mode = 'view'){
+        loadProvider(fornecedor, mode = null){
             this.mode = mode
             axios.get(`${baseApiUrl}/fornecedores/${fornecedor.id}`)
                 .then(res=> this.fornecedor = res.data)
@@ -156,6 +169,7 @@ export default {
     },
     mounted(){
         this.loadProviders()
+        console.log(this.fornecedor.nome)
     }
 }
 </script>

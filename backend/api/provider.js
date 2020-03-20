@@ -70,18 +70,16 @@ module.exports = app =>{
         
     const getById = (req,res)=>{
         app.db('fornecedores')
-            .select('id', 'nome', 'email', 'cidade', 'estado', 'endereco', 'telefone')
-            .whereNull('deletedAt')
             .where({id: req.params.id})
-            .then(fornecedor => res.json(fornecedor))
+            .first()
+            .then(fornecedor =>{
+                res.json(fornecedor)
+            })
             .catch(err => res.status(500).send(err))
     }
 
     const block = async (req, res)=>{
         try {
-            //const fornecedores = await app.db('fornecedores')
-            //    .where({id: req.params.id})
-
             const rowsUpdated = await app.db('fornecedores')
                 .update({deletedAt: new Date()})
                 .where({id: req.params.id})
