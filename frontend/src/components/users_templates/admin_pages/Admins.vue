@@ -71,6 +71,7 @@
 
         <div class="content-table-admins">
             <div class="filter-and-title">  
+                <h3>Administradores</h3>
                 <b-form-input :v-model="search" placeholder="Buscar..."></b-form-input>
             </div>
             <div class="table">
@@ -161,7 +162,7 @@ export default {
     .filter-and-title{
         flex-direction: row;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         margin: 10px 0 20px ;
     }
     .content-pages{
