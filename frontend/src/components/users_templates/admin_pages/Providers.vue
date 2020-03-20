@@ -101,7 +101,7 @@
                     :fields="fields">
                     <template slot="acoes" slot-scope="data">
                         <b-button variant="danger" @click="loadProvider(data.item, 'remove')" class="mr-2">
-                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-lock"></i>
                         </b-button>
                         <b-button variant="success" @click="loadProvider(data.item, 'view')">
                             <i class="fa fa-eye"></i>

@@ -9,7 +9,7 @@ import './config/bootstrap'
 
 Vue.config.productionTip = false
 
-require('axios').defaults.headers.common['Authorization'] = 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywibm9tZSI6IlBpcmlxdWl0YSIsImVtYWlsIjoicHBAayIsImFkbWluIjp0cnVlLCJpYXQiOjE1ODQ1NTg3MTQsImV4cCI6MTU4NDgxNzkxNH0.TN0r3HjFb4qhDM1R2fadEneyoQmHPmNO3VGoOsbi1X4'
+require('axios').defaults.headers.common['Authorization'] = 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwibm9tZSI6ImEiLCJlbWFpbCI6ImFAZ29sIiwiYWRtaW4iOnRydWUsImlhdCI6MTU4NDc0MzI5NiwiZXhwIjoxNTg1MDAyNDk2fQ.eLVUHKX4aEuqzVNHWf8-sY5AoQi9xbl4wCElbgmkLXo'
 new Vue({
 	router,
 	store,

@@ -47,19 +47,25 @@ module.exports = app =>{
         }
     }
 
-    const limit = 10
+    const limit = 5
 
     const get = async (req, res)=>{
+        const page = req.query.page || 1
+
+        const result = await app.db('admins').count('id').first()
+        const count = parseInt(result.count)
+
         app.db('admins')
             .select('id','nome','email')
-            .then(admins => res.json(admins))
+            .limit(limit).offset(page * limit - limit)
+            .then(admins => res.json({data:admins, count, limit}))
             .catch(err => res.status(500).send(err))
     }
 
     const getById = (req,res)=>{
         app.db('admins')
-            .select('id', 'nome', 'email')
             .where({id: req.params.id})
+            .first()
             .then(admin => res.json(admin))
             .catch(err => res.status(500).send(err))
     }

@@ -9,9 +9,9 @@ module.exports = app =>{
     app.post('/validateTokenAdminProvider', app.api.authProvider.validateTokenProvider)
     
     app.route('/admins')
-        .all(app.config.passport.authenticate())
-        .post(admin(app.api.admin.save))
-        .get(admin(app.api.admin.get))
+        //.all(app.config.passport.authenticate())
+        .post((app.api.admin.save))
+        .get((app.api.admin.get))
 
     app.route('/admins/:id')
         .all(app.config.passport.authenticate())

@@ -87,7 +87,11 @@
                 </b-table>
             </div>
             <div class="content-pages">
-                <span> voltar </span> <span> avançar</span>
+                <b-pagination size="md"
+                    v-model="page"
+                    :total-rows="count"
+                    :per-page="limit"
+                ></b-pagination>
             </div>
         </div>
 
@@ -111,14 +115,19 @@ export default {
                 { key: 'nome', label: 'Nome', sortable: true},
                 { key: 'email', label: 'E-mail', sortable: true},
                 { key: 'acoes', label: 'Ações'},
-            ]
+            ],
+            page: 1,
+            limit: 0,
+            count: 0,
         }
     }, 
     methods:{
         loadAdmins(){
-            const url = `${baseApiUrl}/admins`
+            const url = `${baseApiUrl}/admins?page=${this.page}`
             axios.get(url).then(res =>{          
-                this.admins = res.data
+                this.admins = res.data.data
+                this.count = res.data.count
+                this.limit = res.data.limit
             })
         }, 
         reset(){
@@ -145,7 +154,13 @@ export default {
         },
         loadAdmin(admin, mode = 'save'){
             this.mode = mode
-            this.admin = {...admin}
+            axios.get(`${baseApiUrl}/admins/${admin.id}`)
+                .then(res=> this.admin = res.data)
+        }
+    },
+    watch:{
+        page(){
+            this.loadAdmins()
         }
     },
     mounted(){
@@ -167,7 +182,7 @@ export default {
     }
     .content-pages{
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
     }
     .filter-and-title input{
         width: 40%;
