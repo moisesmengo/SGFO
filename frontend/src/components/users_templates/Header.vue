@@ -22,7 +22,7 @@
                 <v-btn flat to="/administracao" class="white--text">Área do Administrador</v-btn>
             </v-toolbar-items>
 
-            <v-toolbar-items >
+            <v-toolbar-items>
                 <v-menu offset-y class="user-area-menu">
                     <v-btn flat slot="activator" 
                         v-if="admin && logado" 
