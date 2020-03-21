@@ -92,7 +92,14 @@
         <div class="content-table-provider">
             <div class="filter-and-title-provider"> 
                 <h3>Fornecedores</h3> 
-                <b-form-input :v-model="search" placeholder="Buscar..."></b-form-input>
+                <div class="provider-filter">
+                    <i class="fa fa-search"></i>
+                    <input type="text" 
+                        placeholder="Buscar" 
+                        v-model="aminsFilter" 
+                        class="filter-field"
+                    >
+                </div>
             </div>
             <div class="table-provider">
                 <b-table 
@@ -212,4 +219,22 @@ export default {
     .filter-and-title-provider input{
         width: 40%;
     }
+    .provider-filter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #aaa;
+    }
+   .provider-filter i{
+       color: #aaa;
+       margin-right: 10px;
+   }
+
+   .provider-filter input{
+       color: #ccc;
+       font-size: 1.3rem;
+       border:0;
+       outline: 0;
+       width: 100%;
+   }
 </style>
