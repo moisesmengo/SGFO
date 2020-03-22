@@ -76,7 +76,6 @@
                     <i class="fa fa-search"></i>
                     <input type="text" 
                         placeholder="Buscar" 
-                        v-model="aminsFilter" 
                         class="filter-field"
                     >
                 </div>

@@ -1,7 +1,8 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible}">
-		<Header title="Sistema de Fornecimento" :hideToggle="true" :admin="true"/>
-		<Menu/>
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !admin}">
+		<Header title="Sistema de Fornecimento" 
+			:hideToggle="!admin"/>
+		<Menu v-if="admin"/>
 			<Content/>
 		<Footer/>
 	</div>
@@ -17,7 +18,7 @@ import Content from './components/users_templates/Content'
 export default {
 	name: 'App',
 	components: { Header, Footer, Menu, Content },
-	computed: mapState(['isMenuVisible'])
+	computed: mapState(['isMenuVisible', 'admin'])
 }
 </script>
 

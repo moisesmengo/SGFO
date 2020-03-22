@@ -6,13 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        isMenuVisible: true,
-        fornecedor: {nome: 'moises', email: 'a@a'},
-        admin: {nome: 'eu', email: 'eu@eu'},
-        logado: true,
+        isMenuVisible: false,
+        fornecedor:null,
+        admin: null,
+        
     },
     mutations:{
         toggleMenu(state, isVisible){
+            if(!state.admin){
+                state.isMenuVisible = false
+                return
+            }
             if(isVisible === undefined){
                 state.isMenuVisible = !state.isMenuVisible
             } else {
@@ -31,8 +35,10 @@ export default new Vuex.Store({
             state.admin = admin
             if(admin){
                 axios.defaults.headers.common['Authorization'] = `bearer ${admin.token}`
+                state.isMenuVisible = true
             } else {
                 delete axios.defaults.headers.common['Authorization']
+                state.isMenuVisible = false
             }
         }
     }

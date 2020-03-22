@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <v-toolbar app class="teal lighten-2 white--text" >
-            <a class="toggle" @click="toggleMenu" v-if="hideToggle">
+            <a class="toggle" @click="toggleMenu" v-if="!hideToggle">
                 <i class="material-icons" :class="icon">{{icon}}</i>
             </a>
 
@@ -10,7 +10,7 @@
                 <router-link to="/">{{ title }}</router-link> </span>
             </v-toolbar-title>
 
-            <v-toolbar-items v-show="!logado">
+            <v-toolbar-items v-if="!admin">
                 <v-btn flat to="/" class="white--text">Início</v-btn>
                 <v-btn flat to="/contato" class="white--text">Contato</v-btn>
                 <v-btn flat to="/sobre" class="white--text">Sobre</v-btn>
@@ -18,23 +18,17 @@
 
             <v-spacer></v-spacer>
 
-            <v-toolbar-items v-show="!logado">
+            <v-toolbar-items v-if="!admin">
                 <v-btn flat to="/administracao" class="white--text">Área do Administrador</v-btn>
             </v-toolbar-items>
 
             <v-toolbar-items>
-                <v-menu offset-y class="user-area-menu">
+                <v-menu offset-y class="user-area-menu" v-if="admin">
                     <v-btn flat slot="activator" 
-                        v-if="admin && logado" 
                         class="white--text"
-                    >{{adm.nome}}</v-btn>
+                    >{{admin.nome}}</v-btn>
 
-                    <v-btn flat slot="activator" 
-                        v-if="!admin && logado"
-                        class="white--text"
-                    >{{fornecedor.nome}}</v-btn>
-
-                    <v-list v-if="admin && logado">
+                    <v-list>
                         <router-link to="/perfil-admin" class="menu-user-component">
                             <v-list-tile>
                                 Perfil
@@ -45,29 +39,11 @@
                                 Configurações
                             </v-list-tile>
                         </router-link>
-                        <router-link to="" class="menu-user-component">
-                            <v-list-tile>
+                        <router-link to="" class="menu-user-component" >
+                            <v-list-tile @click.prevent="logout">
                                 Sair
                             </v-list-tile>
                         </router-link>
-                    </v-list>
-
-                    <v-list v-if="!admin && logado">
-                        <a href="" class="menu-user-component">
-                            <v-list-tile>
-                                Perfil cu
-                            </v-list-tile>
-                        </a>
-                        <a href="" class="menu-user-component"> 
-                            <v-list-tile>
-                                Configurações cu
-                            </v-list-tile>
-                        </a>
-                        <a href="" class="menu-user-component"> 
-                            <v-list-tile>
-                                Sair cu
-                            </v-list-tile>
-                        </a>
                     </v-list>
                 </v-menu>
             </v-toolbar-items>
@@ -76,19 +52,18 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import { adminKey } from '../../global'
 
 export default {
     name: 'Header',
     props: {
         title: String,
         hideToggle: Boolean,
-        admin: Boolean,
     },
     computed: {
         ...mapState({
-            adm: 'admin',
+            admin: 'admin',
             fornecedor: 'fornecedor',
-            logado: 'logado'
         }),
         icon(){
             return this.$store.state.isMenuVisible ? "menu_open" : "menu" 
@@ -98,6 +73,11 @@ export default {
     methods: {
         toggleMenu(){
             this.$store.commit('toggleMenu')
+        },
+        logout(){
+            localStorage.removeItem(adminKey)
+            this.$store.commit('setAdmin', null)
+            this.$router.push({ name: 'login-admin'})
         }
     }
 }
