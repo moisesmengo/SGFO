@@ -3,10 +3,10 @@
        <Titles
             icon="home"
             main="Início"
-            v-show="logado && adm"
+            v-if="admin"
        />
 
-       <div class="stats">
+       <div class="stats" v-if="admin">
            <Stat
                 title="Fornecedores" :value="10"
                 icon="supervised_user_circle" color="#E0F7FA"
@@ -21,7 +21,7 @@
            />
        </div>
 
-       <div class="auth-modal" v-show="!logado">
+       <div class="auth-modal" v-show="!admin">
             <img src="../../../public/oleo.jpg" width="200" class="logo">
             <hr>
 
@@ -64,7 +64,7 @@ export default {
     },
     computed:{
         ...mapState({
-            adm: 'admin',
+            admin: 'admin',
             provider: 'fornecedor',
             logado: 'logado'
         }),

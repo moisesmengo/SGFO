@@ -3,7 +3,8 @@
 		<Header title="Sistema de Fornecimento" 
 			:hideToggle="!admin"/>
 		<Menu v-if="admin"/>
-			<Content/>
+		<Loading v-if="validatingToken"/>
+		<Content v-else/>
 		<Footer/>
 	</div>
 </template>
@@ -13,12 +14,47 @@ import { mapState } from 'vuex'
 import Header from './components/users_templates/Header'
 import Footer from './components/users_templates/Footer'
 import Menu from './components/users_templates/Menu'
+import Loading from './components/users_templates/Loading'
 import Content from './components/users_templates/Content'
+import axios from 'axios'
+import { baseApiUrl, adminKey} from  './global'
 
 export default {
 	name: 'App',
-	components: { Header, Footer, Menu, Content },
-	computed: mapState(['isMenuVisible', 'admin'])
+	components: { Header, Footer, Menu, Content, Loading },
+	computed: mapState(['isMenuVisible', 'admin']),
+	data() {
+		return {
+			validatingToken: true
+		}
+	},
+	methods:{
+		async validateToken(){
+			this.validatingToken = true
+			const json = localStorage.getItem(adminKey)
+			const adminData = JSON.parse(json)
+			this.$store.commit('setAdmin', null)
+
+			if(!adminData){
+				this.validatingToken = false
+				return this.$route.push({name: 'login-admin'})
+			}
+
+			const res = await axios.post(`${ baseApiUrl}/validateTokenAdmin`, adminData)
+
+			if(res.data){
+				this.$store.commit('setAdmin', adminData)
+			} else {
+				localStorage.removeItem(adminKey)
+				this.$route.push({ name: 'login-admin'})
+			}
+
+			this.validatingToken = false
+		}
+	},
+	created(){
+		this.validateToken()
+	}
 }
 </script>
 

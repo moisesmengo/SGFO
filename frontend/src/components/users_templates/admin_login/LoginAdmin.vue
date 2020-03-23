@@ -30,7 +30,7 @@
         </v-card-text>
         <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn class="primary" @click="signin">Login</v-btn>
+            <v-btn class="btn-login" @click="signin">Login</v-btn>
         </v-card-actions>
     </v-card>
     </v-flex>
@@ -64,5 +64,7 @@ export default {
 }
 </script>
 <style lang="css">
-    
+    .btn-login{
+        color: red;
+    }
 </style>

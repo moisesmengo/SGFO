@@ -6,7 +6,7 @@ module.exports = app =>{
     app.post('/validateTokenAdmin', app.api.authAdmins.validateTokenAdmin)
 
     app.post('/signinProvider', app.api.authProvider.signinProvider)
-    app.post('/validateTokenAdminProvider', app.api.authProvider.validateTokenProvider)
+    app.post('/validateTokenProvider', app.api.authProvider.validateTokenProvider)
     
     app.route('/admins')
         //.all(app.config.passport.authenticate())

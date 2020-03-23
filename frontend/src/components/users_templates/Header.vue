@@ -5,7 +5,9 @@
                 <i class="material-icons" :class="icon">{{icon}}</i>
             </a>
 
-            <v-toolbar-title class="headline text-uppercase mr-4">
+            <v-spacer v-if="admin"></v-spacer>
+
+            <v-toolbar-title class="headline text-uppercase mr-4 ">
                 <span class="font-weight-light title" > 
                 <router-link to="/">{{ title }}</router-link> </span>
             </v-toolbar-title>
@@ -22,7 +24,12 @@
                 <v-btn flat to="/administracao" class="white--text">Área do Administrador</v-btn>
             </v-toolbar-items>
 
-            <v-toolbar-items>
+            <v-toolbar-items class="logout-content" v-if="admin">
+                <a href="" class="logout" @click.prevent="logout">
+                    <i class="material-icons">exit_to_app</i>
+                </a>
+            </v-toolbar-items>
+            <!--<v-toolbar-items>
                 <v-menu offset-y class="user-area-menu" v-if="admin">
                     <v-btn flat slot="activator" 
                         class="white--text"
@@ -39,14 +46,14 @@
                                 Configurações
                             </v-list-tile>
                         </router-link>
-                        <router-link to="" class="menu-user-component" >
-                            <v-list-tile @click.prevent="logout">
+                        <router-link to="" >
+                            <v-list-tile @click.prevent="logout"  class="logout-click">
                                 Sair
                             </v-list-tile>
                         </router-link>
                     </v-list>
                 </v-menu>
-            </v-toolbar-items>
+            </v-toolbar-items>-->
         </v-toolbar>
     </header>
 </template>
@@ -128,5 +135,25 @@ export default {
     .toggle i{
         background: none;
     }
-    
+    .logout-content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+        height: 100%;
+    }
+    .logout-content .logout{
+        width: 60px;
+        height: 100%;
+        justify-self: flex-start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .logout-content .logout:hover{
+        background-color: rgba(0, 0, 0, 0.158);
+    }
 </style>
