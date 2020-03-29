@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios  from 'axios'
+import { baseApiUrl, showError} from '../global'
 
 Vue.use(Vuex)
 
@@ -40,6 +41,9 @@ export default new Vuex.Store({
                 delete axios.defaults.headers.common['Authorization']
                 state.isMenuVisible = false
             }
+        },
+        updateAdmin(state, admin){
+            state.admin = admin
         }
     }
 })

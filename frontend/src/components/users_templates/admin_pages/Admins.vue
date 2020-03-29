@@ -1,9 +1,5 @@
 <template>
     <div class="admins">
-        <Titles
-            main="Administradores do Sistema"
-            icon="assignment_ind"
-        />
         <h4>Cadastrar Administrador</h4>
         <hr>
         <b-form>
@@ -106,10 +102,8 @@
 <script>
 import axios from 'axios'
 import { baseApiUrl, showError } from '../../../global'
-import Titles from '../Titles'
 export default {
     name: 'Admins',
-    components:{ Titles },
     data() {
         return {
             mode: 'save',

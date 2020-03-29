@@ -66,7 +66,6 @@ export default {
         ...mapState({
             admin: 'admin',
             provider: 'fornecedor',
-            logado: 'logado'
         }),
     },
     components:{ Titles, Stat },
@@ -87,7 +86,7 @@ export default {
                 .then(res => {
                     this.$store.commit('setProvider', res.data)
                     localStorage.setItem(providerKey, JSON.stringify(res.data))
-                    this.$router.push({ path: '/fornecedor' })
+                    this.$router.push({ path: '/fornecedores' })
                 }).catch(showError)
                 
         },

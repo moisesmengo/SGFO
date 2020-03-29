@@ -10,11 +10,11 @@ module.exports = app =>{
     
     app.route('/admins')
         //.all(app.config.passport.authenticate())
-        .post((app.api.admin.save))
-        .get((app.api.admin.get))
+        .post(admin(app.api.admin.save))
+        .get(admin(app.api.admin.get))
 
     app.route('/admins/:id')
-        .all(app.config.passport.authenticate())
+        //.all(app.config.passport.authenticate())
         .get(admin(app.api.admin.getById))
         .put(admin(app.api.admin.save))
         .delete(admin(app.api.admin.remove))        

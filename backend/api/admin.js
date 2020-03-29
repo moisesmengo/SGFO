@@ -33,11 +33,11 @@ module.exports = app =>{
         admin.senha = encryptPassword(admin.senha)
         delete admin.confirmarSenha
         //função para atualizar ou inserir
-        if(admin.id){
+        if(admin.id) {
             app.db('admins')
                 .update(admin)
-                .where({id: admin.id})
-                .then(_=> res.status(204).send())
+                .where({ id: admin.id })
+                .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
             app.db('admins')

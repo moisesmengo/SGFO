@@ -5,61 +5,30 @@
                 <i class="material-icons" :class="icon">{{icon}}</i>
             </a>
 
-            <v-spacer v-if="admin"></v-spacer>
+            <v-spacer v-if="admin || fornecedor"></v-spacer>
 
             <v-toolbar-title class="headline text-uppercase mr-4 ">
                 <span class="font-weight-light title" > 
                 <router-link to="/">{{ title }}</router-link> </span>
             </v-toolbar-title>
 
-            <v-toolbar-items v-if="!admin">
-                <v-btn flat to="/" class="white--text">Início</v-btn>
-                <v-btn flat to="/contato" class="white--text">Contato</v-btn>
-                <v-btn flat to="/sobre" class="white--text">Sobre</v-btn>
-            </v-toolbar-items>
-
             <v-spacer></v-spacer>
 
-            <v-toolbar-items v-if="!admin">
+            <v-toolbar-items v-if="!admin || !fornecedor">
                 <v-btn flat to="/administracao" class="white--text">Área do Administrador</v-btn>
             </v-toolbar-items>
 
-            <v-toolbar-items class="logout-content" v-if="admin">
+            <v-toolbar-items class="logout-content" v-if="admin || fornecedor">
                 <a href="" class="logout" @click.prevent="logout">
                     <i class="material-icons">exit_to_app</i>
                 </a>
             </v-toolbar-items>
-            <!--<v-toolbar-items>
-                <v-menu offset-y class="user-area-menu" v-if="admin">
-                    <v-btn flat slot="activator" 
-                        class="white--text"
-                    >{{admin.nome}}</v-btn>
-
-                    <v-list>
-                        <router-link to="/perfil-admin" class="menu-user-component">
-                            <v-list-tile>
-                                Perfil
-                            </v-list-tile>
-                        </router-link>
-                        <router-link to="/configuracoes" class="menu-user-component">
-                            <v-list-tile>
-                                Configurações
-                            </v-list-tile>
-                        </router-link>
-                        <router-link to="" >
-                            <v-list-tile @click.prevent="logout"  class="logout-click">
-                                Sair
-                            </v-list-tile>
-                        </router-link>
-                    </v-list>
-                </v-menu>
-            </v-toolbar-items>-->
         </v-toolbar>
     </header>
 </template>
 <script>
 import { mapState } from 'vuex'
-import { adminKey } from '../../global'
+import { adminKey, providerKey } from '../../global'
 
 export default {
     name: 'Header',
@@ -82,9 +51,16 @@ export default {
             this.$store.commit('toggleMenu')
         },
         logout(){
-            localStorage.removeItem(adminKey)
-            this.$store.commit('setAdmin', null)
-            this.$router.push({ name: 'login-admin'})
+            if(this.admin){
+                localStorage.removeItem(adminKey)
+                this.$store.commit('setAdmin', null)
+                this.$router.push({ name: 'login-admin'})
+            }
+            if (this.fornecedor){
+                localStorage.removeItem(providerKey)
+                this.$store.commit('setProvider', null)
+                this.$router.push({ name: '/'})
+            }
         }
     }
 }

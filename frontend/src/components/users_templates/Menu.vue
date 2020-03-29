@@ -3,7 +3,7 @@
         <div class="menu-items">
             <ul class="mainmenu">
                 <li><router-link to="/">Início</router-link></li> 
-                <li><router-link to="/administradores">Administradores</router-link></li> 
+                <li><router-link to="/configuracoes">Configurações</router-link></li> 
                 <!--<li><a href="#"><i class="fa fa-home"></i> O que Fazemos?</a> 
                 <ul class="submenu"> 
                     <li><a href="#">Web Design</a></li> 

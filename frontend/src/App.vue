@@ -3,7 +3,7 @@
 		<Header title="Sistema de Fornecimento" 
 			:hideToggle="!admin"/>
 		<Menu v-if="admin"/>
-		<Loading v-if="validatingToken"/>
+		<Loading v-if="validatingToken "/>
 		<Content v-else/>
 		<Footer/>
 	</div>
@@ -17,15 +17,16 @@ import Menu from './components/users_templates/Menu'
 import Loading from './components/users_templates/Loading'
 import Content from './components/users_templates/Content'
 import axios from 'axios'
-import { baseApiUrl, adminKey} from  './global'
+import { baseApiUrl, adminKey, providerKey} from  './global'
 
 export default {
 	name: 'App',
 	components: { Header, Footer, Menu, Content, Loading },
-	computed: mapState(['isMenuVisible', 'admin']),
+	computed: mapState(['isMenuVisible', 'admin', 'fornecedor']),
 	data() {
 		return {
-			validatingToken: true
+			validatingToken: true,
+			validateTokenProvider: null
 		}
 	},
 	methods:{
@@ -50,7 +51,7 @@ export default {
 			}
 
 			this.validatingToken = false
-		}
+		},
 	},
 	created(){
 		this.validateToken()
