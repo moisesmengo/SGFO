@@ -1,7 +1,8 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible || !admin}">
+	<div id="app" :class="{'hide-menu': !isMenuVisible}">
 		<Header title="Sistema de Fornecimento" 
 			:hideToggle="!admin"/>
+		<Nav v-if="!admin"/>
 		<Menu v-if="admin"/>
 		<Loading v-if="validatingToken "/>
 		<Content v-else/>
@@ -11,17 +12,18 @@
 
 <script>
 import { mapState } from 'vuex'
-import Header from './components/users_templates/Header'
-import Footer from './components/users_templates/Footer'
-import Menu from './components/users_templates/Menu'
-import Loading from './components/users_templates/Loading'
-import Content from './components/users_templates/Content'
+import Header from './components/template/Header'
+import Footer from './components/template/Footer'
+import Menu from './components/template/Menu'
+import Loading from './components/template/Loading'
+import Content from './components/template/Content'
+import Nav from './components/template/Nav'
 import axios from 'axios'
 import { baseApiUrl, adminKey, providerKey} from  './global'
 
 export default {
 	name: 'App',
-	components: { Header, Footer, Menu, Content, Loading },
+	components: { Header, Footer, Menu, Content, Loading, Nav },
 	computed: mapState(['isMenuVisible', 'admin', 'fornecedor']),
 	data() {
 		return {
@@ -38,7 +40,8 @@ export default {
 
 			if(!adminData){
 				this.validatingToken = false
-				return this.$route.push({name: 'login-admin'})
+				this.$router.push({name: 'login-admin'})
+				return 
 			}
 
 			const res = await axios.post(`${ baseApiUrl}/validateTokenAdmin`, adminData)
@@ -47,7 +50,7 @@ export default {
 				this.$store.commit('setAdmin', adminData)
 			} else {
 				localStorage.removeItem(adminKey)
-				this.$route.push({ name: 'login-admin'})
+				this.$router.push({ name: 'login-admin'})
 			}
 
 			this.validatingToken = false
@@ -74,7 +77,7 @@ export default {
 
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 60px 1fr 40px;
+		grid-template-rows: 60px 40px 1fr 40px;
 		grid-template-columns: 200px 1fr;
 		grid-template-areas:
 			"header header"
@@ -86,6 +89,7 @@ export default {
 	#app.hide-menu{
 		grid-template-areas:
 			"header header"
+			"nav nav"
 			"content content"
 			"footer footer"
 		;

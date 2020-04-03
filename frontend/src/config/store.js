@@ -10,7 +10,6 @@ export default new Vuex.Store({
         isMenuVisible: false,
         fornecedor:null,
         admin: null,
-        
     },
     mutations:{
         toggleMenu(state, isVisible){

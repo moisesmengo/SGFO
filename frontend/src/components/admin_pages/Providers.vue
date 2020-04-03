@@ -126,8 +126,8 @@
     </div>
 </template>
 <script>
-import Titles from '../Titles'
-import { baseApiUrl, showError } from '../../../global'
+import Titles from '../template/Titles'
+import { baseApiUrl, showError } from '../../global'
 import axios from 'axios'
 export default {
     name: 'Providers',

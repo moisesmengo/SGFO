@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-import Titles from '../Titles'
+import Titles from '../template/Titles'
 import AdminData from '../admin_pages/AdminData'
 import Admins from '../admin_pages/Admins'
 export default {

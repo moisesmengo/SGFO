@@ -1,5 +1,10 @@
 <template >
    <div class="home">
+
+       <div class="content-home" v-show="!admin">
+
+       </div>
+
        <Titles
             icon="home"
             main="Início"
@@ -21,7 +26,7 @@
            />
        </div>
 
-       <div class="auth-modal" v-show="!admin">
+       <div class="auth-modal" v-show="admin">
             <img src="../../../public/oleo.jpg" width="200" class="logo">
             <hr>
 
@@ -53,7 +58,7 @@ import axios from 'axios'
 import { baseApiUrl, showError, providerKey } from '../../global'
 import Titles from './Titles'
 import { mapState } from 'vuex'
-import Stat from '../users_templates/admin_pages/Stat'
+import Stat from '../admin_pages/Stat'
 
 export default {
     data() {
@@ -94,7 +99,6 @@ export default {
 }
 </script>
 <style lang="css">
-
     .auth-modal{
         background-color:#fff ;
         width: 350px;
