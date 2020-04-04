@@ -1,5 +1,5 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible}">
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !admin}">
 		<Header title="Sistema de Fornecimento" 
 			:hideToggle="!admin"/>
 		<Nav v-if="!admin"/>
@@ -40,7 +40,7 @@ export default {
 
 			if(!adminData){
 				this.validatingToken = false
-				this.$router.push({name: 'login-admin'})
+				this.$router.push({name: 'home'})
 				return 
 			}
 
@@ -50,7 +50,7 @@ export default {
 				this.$store.commit('setAdmin', adminData)
 			} else {
 				localStorage.removeItem(adminKey)
-				this.$router.push({ name: 'login-admin'})
+				this.$router.push({ name: 'home'})
 			}
 
 			this.validatingToken = false

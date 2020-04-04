@@ -10,7 +10,7 @@ import {adminKey} from '../global'
 
 Vue.use(VueRouter)
 
-const routes = [{ 
+const routes = [{
         name: 'home', 
         path: '/', 
         component: Home,

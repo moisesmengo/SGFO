@@ -1,10 +1,41 @@
 <template >
    <div class="home">
-
-       <div class="content-home" v-show="!admin">
-
+       <div v-if="!admin">
+           <b-row>
+               <b-col md="8" sm="12">
+                   <div class="text-information">
+                        <p>
+                            Ajude o IFRN a conseguir matéria prima para a confecção de 
+                            produtos de higiene pessoal.
+                        </p>
+                   </div>
+               </b-col>
+               <b-col md="4" sm="0"></b-col>
+           </b-row>
+           <b-row>
+               <b-col md="8" sm="12">
+                   <div class="content-login-form">
+                        <h1 class="title-info">Já é um fornecedor? Faça login</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="email">E-mail:</label>
+                                <input type="email" placeholder="Digite seu e-mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="senha">Senha:</label>
+                                <input type="password" placeholder="Digite sua senha">
+                            </div>
+                        </form>
+                        <a class="remember-password" href="">Esqueceu sua senha?</a>
+                        <button class="button" type="submit">ENTRAR</button>
+                        <router-link to="" class="register">Ainda não é fornecedor? Cadastre-se aqui</router-link>
+                   </div>
+               </b-col>
+               <b-col md="4" sm="0">
+                   <img :src="quimica" class="img" alt="Vidrarias">
+               </b-col>
+           </b-row>
        </div>
-
        <Titles
             icon="home"
             main="Início"
@@ -26,31 +57,6 @@
            />
        </div>
 
-       <div class="auth-modal" v-show="admin">
-            <img src="../../../public/oleo.jpg" width="200" class="logo">
-            <hr>
-
-            <div class="auth-title">
-                {{ showSignup ? 'Cadastre-se como fornecedor' : 'Faça login'}}
-            </div>
-
-            <input v-if="showSignup" v-model="fornecedor.nome" required type="text" name="nome" placeholder="Nome">
-            <input type="email" name="email" v-model="fornecedor.email" required placeholder="E-mail">
-            <input v-if="showSignup" name="cidade" type="text" v-model="fornecedor.cidade" required placeholder="Cidade">
-            <input v-if="showSignup" type="text" name="estado" v-model="fornecedor.estado" required placeholder="Estado">
-            <input v-if="showSignup" type="text" name="endereco" placeholder="Endereço" v-model="fornecedor.endereco" required>
-            <input type="password" name="senha" placeholder="Senha" v-model="fornecedor.senha" required>
-            <input v-if="showSignup" name="confirmarSenha" type="password" v-model="fornecedor.confirmarSenha" required placeholder="Confirme a Senha">
-
-            <button v-if="showSignup" @click="salvar">Cadastrar</button>
-            <button v-else @click="signin">Entrar</button>
-
-            <a href @click.prevent="showSignup = !showSignup">
-                <span v-if="showSignup">Já é fornecedor? Acesse o Login!</span>
-                <span v-else>Ainda não é fornecedor? Registre-se aqui!</span>
-            </a>
-
-        </div>
    </div>
 </template>
 <script>
@@ -59,12 +65,15 @@ import { baseApiUrl, showError, providerKey } from '../../global'
 import Titles from './Titles'
 import { mapState } from 'vuex'
 import Stat from '../admin_pages/Stat'
+import quimica from '../../asets/quimica.png'
+import '../../asets/pages-home-global-styles.css'
 
 export default {
     data() {
         return {
             showSignup: true,
             fornecedor: {},
+            quimica: quimica,
         }
     },
     computed:{
@@ -99,71 +108,52 @@ export default {
 }
 </script>
 <style lang="css">
-    .auth-modal{
-        background-color:#fff ;
-        width: 350px;
-        padding: 35px;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-        margin-right: 30px;
+    .home .content-login-form{
+        width: 100%;
+        height: auto;
 
         display: flex;
         flex-direction: column;
-        align-items: center;
+        padding: 20px 70px 70px 70px;
+        
+        background-color:#DFE2E5 ;
+        mix-blend-mode: multiply;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
     }
-
-    .auth-title{
-        font-size: 1.2rem;
-        font-weight: 100;
-        margin-top: 1px;
-        margin-bottom: 15px;
-    }
-
-    .auth-modal input{
-        border: 1px solid #bbb;
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 3px 8px;
-        outline: none;
-    }
-
-    .stats{
+    .home .content-login-form .form-group{
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+    }
+    .home .text-information{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
+        text-align: center;
+
+        font-size: 24px;
+        font-weight: 400;
+        color: #0D0D0D;
+    }
+    .home .content-login-form .register{
+        text-align: center;
         margin-top: 20px;
+        font-size: 24px;
+        color: #0d0d0d;
     }
-
-    .auth-modal button{
-        align-self: flex-end;
-        background-color: #2460ae;
-        color: #fff;
-        padding: 5px 15px;
+    .home .content-login-form .register:hover{
+        color: #2a3756
     }
-
-    .auth-modal a {
-        margin-top: 25px;
-        text-decoration: none;
-        color: #000;
-    }
-
-    .auth-modal a:hover{
-        background-color: #4DB6AC;
-        color: #fff;
-    }
-
-    .auth-modal hr{
-        border: 0;
+    .home .img{
         width: 100%;
-        height: 1px;
-        background-image: linear-gradient(to right, 
-            rgba(120, 120, 120, 0), 
-            rgba(120, 120, 120, 0.75),
-            rgba(120, 120, 120, 0)
-            );
+        height: 100%;
     }
 
-    .auth-modal .logo{
-        margin-bottom: 5px;
-    }
+    /*Deixando essa bixiga responsiva */
 
+    @media only screen and (max-device-width: 700px) {
+        .button{background-color: #0d0d0d;}
+    }
+   
 </style>
