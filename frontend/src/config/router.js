@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../components/template/Home'
+import Register from '../components/home_pages/Register'
+
 import Admins from '../components/admin_pages/Admins'
 import Providers from '../components/admin_pages/Providers'
 import AdminConfigs from '../components/admin_pages/AdminConfigs'
@@ -15,6 +17,10 @@ const routes = [{
         path: '/', 
         component: Home,
         
+    }, {
+        name:'registro',
+        path:'/registro',
+        component: Register
     }, {
         name:'configuracoes',
         path:'/configuracoes',

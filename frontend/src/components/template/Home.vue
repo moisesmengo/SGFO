@@ -14,8 +14,9 @@
            </b-row>
            <b-row>
                <b-col md="8" sm="12">
-                   <div class="content-login-form">
+                   <div class="content-form">
                         <h1 class="title-info">Já é um fornecedor? Faça login</h1>
+                        <hr>
                         <form>
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
@@ -28,7 +29,7 @@
                         </form>
                         <a class="remember-password" href="">Esqueceu sua senha?</a>
                         <button class="button" type="submit">ENTRAR</button>
-                        <router-link to="" class="register">Ainda não é fornecedor? Cadastre-se aqui</router-link>
+                        <router-link to="/registro" class="register">Ainda não é fornecedor? Cadastre-se aqui</router-link>
                    </div>
                </b-col>
                <b-col md="4" sm="0">
@@ -108,23 +109,6 @@ export default {
 }
 </script>
 <style lang="css">
-    .home .content-login-form{
-        width: 100%;
-        height: auto;
-
-        display: flex;
-        flex-direction: column;
-        padding: 20px 70px 70px 70px;
-        
-        background-color:#DFE2E5 ;
-        mix-blend-mode: multiply;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
-    }
-    .home .content-login-form .form-group{
-        display: flex;
-        flex-direction: column;
-    }
     .home .text-information{
         display: flex;
         justify-content: center;
@@ -136,18 +120,11 @@ export default {
         font-weight: 400;
         color: #0D0D0D;
     }
-    .home .content-login-form .register{
-        text-align: center;
-        margin-top: 20px;
-        font-size: 24px;
-        color: #0d0d0d;
-    }
-    .home .content-login-form .register:hover{
-        color: #2a3756
-    }
     .home .img{
         width: 100%;
         height: 100%;
+        border-radius: 15px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     /*Deixando essa bixiga responsiva */
