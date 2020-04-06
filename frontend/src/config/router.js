@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 
 import Home from '../components/template/Home'
 import Register from '../components/home_pages/Register'
+import AdminAuth from '../components/home_pages/AdminAuth'
+import Contact from '../components/home_pages/Contact'
+import About from '../components/home_pages/About'
 
 import Admins from '../components/admin_pages/Admins'
 import Providers from '../components/admin_pages/Providers'
@@ -21,6 +24,18 @@ const routes = [{
         name:'registro',
         path:'/registro',
         component: Register
+    }, {
+        name: 'login-adimin',
+        path:'/administracao',
+        component: AdminAuth
+    }, {
+        name: 'contato',
+        path: '/contato',
+        component: Contact
+    }, {
+        name: 'sobre',
+        path: '/sobre',
+        component: About
     }, {
         name:'configuracoes',
         path:'/configuracoes',

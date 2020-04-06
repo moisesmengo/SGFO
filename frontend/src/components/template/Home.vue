@@ -109,25 +109,6 @@ export default {
 }
 </script>
 <style lang="css">
-    .home .text-information{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        text-align: center;
-
-        font-size: 24px;
-        font-weight: 400;
-        color: #0D0D0D;
-    }
-    .home .img{
-        width: 100%;
-        height: 100%;
-        border-radius: 15px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-
-    /*Deixando essa bixiga responsiva */
 
     @media only screen and (max-device-width: 700px) {
         .button{background-color: #0d0d0d;}
