@@ -72,4 +72,9 @@ export default {
         justify-content: center;
         align-self:center;
     }
+    @media only screen and (max-device-width: 700px) {
+        .register-content .content-button{
+            width: 100%;
+        }
+    }
 </style>

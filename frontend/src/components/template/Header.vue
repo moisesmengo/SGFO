@@ -39,12 +39,7 @@ export default {
             if(this.admin){
                 localStorage.removeItem(adminKey)
                 this.$store.commit('setAdmin', null)
-                this.$router.push({ name: 'login-admin'})
-            }
-            if (this.fornecedor){
-                localStorage.removeItem(providerKey)
-                this.$store.commit('setProvider', null)
-                this.$router.push({ name: '/'})
+                this.$router.push({ name: 'administracao'})
             }
         }
     }

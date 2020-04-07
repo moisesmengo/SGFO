@@ -109,9 +109,19 @@ export default {
 }
 </script>
 <style lang="css">
-
+    .stats{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
     @media only screen and (max-device-width: 700px) {
-        .button{background-color: #0d0d0d;}
+        .text-information p{
+            font-size: 12px;
+        }
+        .home .img{
+            display: none;
+        }
     }
    
 </style>

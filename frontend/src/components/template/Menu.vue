@@ -1,18 +1,31 @@
 <template>
     <aside class="menu" v-show="isMenuVisible">
         <div class="menu-items">
-            <ul class="mainmenu">
-                <li><router-link to="/">Início</router-link></li> 
-                <li><router-link to="/configuracoes">Configurações</router-link></li> 
-                <!--<li><a href="#"><i class="fa fa-home"></i> O que Fazemos?</a> 
-                <ul class="submenu"> 
-                    <li><a href="#">Web Design</a></li> 
-                    <li><a href="#">Hospedagem</a></li> 
-                    <li><a href="#">SEO</a></li> 
-                    <li><a href="#">Sistemas</a></li> 
-                </ul> 
-                </li>-->
-                <li><router-link to="/fornecedores">Fornecedores</router-link></li> 
+            <ul>
+                <li>
+                    <router-link to="/">
+                        <div class="content-list-menu">
+                            <i class="material-icons">home</i>
+                            <p>Início</p>
+                        </div>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/configuracoes">
+                        <div class="content-list-menu">
+                            <i class="material-icons">settings</i>
+                            <p>Configurações</p>
+                        </div>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/fornecedores">
+                        <div class="content-list-menu">
+                            <i class="material-icons">group</i>
+                            <p>Fornecedores</p>
+                        </div>
+                    </router-link>
+                </li>
             </ul>
         </div>
     </aside>
@@ -35,58 +48,44 @@ export default {
 <style lang="css">
     .menu{
         grid-area: menu;
-        background: linear-gradient(to right, #263238, #455A64);
-
+        background: linear-gradient(to right, #276DB1, rgb(46, 116, 185));
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
     }
     .menu-items{
-        margin-top: 20px;
+        margin: 15px 0 0 0;
     }
-    
-    .menu-items ul{
-        list-style: none;
-        margin: 0;
-        padding:0;
-        font-size: 1.2rem;
-    }
-
-    .mainmenu a {
-        display: block;
-        text-decoration: none;
-        padding: 10px;
-        color: #fff;
-    }
-
-    .mainmenu li a i {
-        color: rgb(224, 221, 21);
-    }
-
-    .mainmenu a:hover {
-        background-color: rgba(42, 173, 155, 0.068);
-        color: rgb(255, 255, 255);
-        text-decoration: none;
-    }
-
-    .mainmenu li:hover .submenu {
-        display: block;
-        max-height: 200px;
-    }
-
-    .submenu a {
-        background-color: rgba(175, 174, 174, 0.192);
-        font-size: 1.0rem
-    }
-
-    .submenu a:hover {
-        background-color: rgba(114, 206, 183, 0.651);
-    }
-
-    .submenu {
-        overflow: hidden;
-        max-height: 0;
-        -webkit-transition: all 0.5s ease-out;
-    }
-
+   .menu .menu-items ul{
+       list-style: none;
+       padding: 0;
+   }
+   .menu .menu-items{
+       display: flex;
+       flex-direction: column;
+   }
+   .menu .menu-items ul li .content-list-menu{
+       display: flex;
+       flex-direction: row;
+       justify-content: start;
+       padding: 15px 15px 10px 15px;
+   }
+   .menu .menu-items ul li .content-list-menu:hover{
+       text-decoration: none;
+       background: #9FC3E6;
+   }
+   .menu .menu-items ul li a{
+       text-decoration: none;
+   }
+   .menu .menu-items ul li a:hover{
+       text-decoration: none;
+   }
+   .menu .menu-items ul li .content-list-menu p{
+       font-size: 1.3rem;
+       padding-left: 15px;
+       color: #fff;
+   }
+   .menu .menu-items ul li .content-list-menu i{
+       color: #fff;
+   }
 </style>

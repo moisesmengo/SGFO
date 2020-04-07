@@ -20,15 +20,15 @@
                         <form>
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
-                                <input type="email" placeholder="Digite seu e-mail">
+                                <input type="email" placeholder="Digite seu e-mail" v-model="admin.email">
                             </div>
                             <div class="form-group">
                                 <label for="senha">Senha:</label>
-                                <input type="password" placeholder="Digite sua senha">
+                                <input type="password" placeholder="Digite sua senha" v-model="admin.senha">
                             </div>
                         </form>
                         <a class="remember-password" href="">Esqueceu sua senha?</a>
-                        <button class="button" type="submit">ENTRAR</button>
+                        <button class="button" type="submit" @click.prevent="signin">ENTRAR</button>
                    </div>
                </b-col>
                <b-col md="4" sm="0" >
@@ -40,11 +40,24 @@
 </template>
 <script>
 import admin from '../../asets/admin.png'
+import axios from 'axios'
+import { baseApiUrl, showError, adminKey} from '../../global'
 export default {
     name: 'AdminAuth',
     data() {
         return {
             adminImg: admin,
+            admin:{}
+        }
+    },
+    methods: {
+        signin(){
+            axios.post(`${baseApiUrl}/signinAdmin`, this.admin)
+                .then( res => {
+                    this.$store.commit('setAdmin', res.data)
+                    localStorage.setItem(adminKey, JSON.stringify(res.data))
+                    this.$router.push({path: '/'})
+                }).catch(showError)
         }
     },
 }

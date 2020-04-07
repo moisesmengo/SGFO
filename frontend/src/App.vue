@@ -1,5 +1,5 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible || !admin}">
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !admin, 'isNav': !isMenuVisible && !admin}">
 		<Header title="Sistema de Fornecimento" 
 			:hideToggle="!admin"/>
 		<Nav v-if="!admin"/>
@@ -17,8 +17,8 @@ import Footer from './components/template/Footer'
 import Menu from './components/template/Menu'
 import Loading from './components/template/Loading'
 import Content from './components/template/Content'
-import Nav from './components/template/Nav'
 import axios from 'axios'
+import Nav from './components/template/Nav'
 import { baseApiUrl, adminKey, providerKey} from  './global'
 
 export default {
@@ -77,7 +77,7 @@ export default {
 
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 60px 40px 1fr 40px;
+		grid-template-rows: 60px 1fr 40px;
 		grid-template-columns: 200px 1fr;
 		grid-template-areas:
 			"header header"
@@ -88,8 +88,17 @@ export default {
 
 	#app.hide-menu{
 		grid-template-areas:
-			"header header"
-			"nav nav"
+			"header header"		
+			"content content"
+			"footer footer"
+		;
+	}
+
+	#app.isNav{
+		grid-template-rows: 60px 40px 1fr 40px;
+		grid-template-areas:
+			"header header"	
+			"nav nav"	
 			"content content"
 			"footer footer"
 		;
