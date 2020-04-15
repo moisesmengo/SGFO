@@ -1,6 +1,6 @@
 <template >
    <div class="home">
-       <div v-if="!admin">
+       <div v-if="!user">
            <b-row>
                <b-col md="8" sm="12">
                    <div class="text-information">
@@ -42,7 +42,12 @@
             main="Início"
             v-if="admin"
        />
-
+        <Titles
+            icon="user"
+            main="Bem vindo a essa merda"
+            v-if="fornecedor"
+        />
+        
        <div class="stats" v-if="admin">
            <Stat
                 title="Fornecedores" :value="10"
@@ -79,8 +84,9 @@ export default {
     },
     computed:{
         ...mapState({
+            user: 'user',
             admin: 'admin',
-            provider: 'fornecedor',
+            fornecedor: 'fornecedor'
         }),
     },
     components:{ Titles, Stat },
@@ -101,7 +107,7 @@ export default {
                 .then(res => {
                     this.$store.commit('setProvider', res.data)
                     localStorage.setItem(providerKey, JSON.stringify(res.data))
-                    this.$router.push({ path: '/fornecedor' })
+                    this.$router.push({ path: '/' })
                 }).catch(showError)
                 
         },

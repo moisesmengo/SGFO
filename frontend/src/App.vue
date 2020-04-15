@@ -4,7 +4,7 @@
 			:hideToggle="!user"/>
 		<Nav v-if="!user"/>
 		<Menu v-if="user"/>
-		<Loading v-if="validatingToken "/>
+		<Loading v-if="validatingToken || validatingTokenProvider"/>
 		<Content v-else/>
 		<Footer/>
 	</div>
@@ -28,7 +28,7 @@ export default {
 	data() {
 		return {
 			validatingToken: true,
-			validateTokenProvider: null
+			validatingTokenProvider: true
 		}
 	},
 	methods:{
@@ -55,9 +55,33 @@ export default {
 
 			this.validatingToken = false
 		},
+		async validateTokenProvider(){
+			this.validatingTokenProvider = true
+			const json = localStorage.getItem(providerKey)
+			const providerData = JSON.parse(json)
+			this.$store.commit('setProvider', null)
+
+			if(!providerData){
+				this.validatingTokenProvider = false
+				this.$router.push({name: 'home'})
+				return 
+			}
+
+			const res = await axios.post(`${ baseApiUrl}/validateTokenProvider`, providerData)
+
+			if(res.data){
+				this.$store.commit('setProvider', providerData)
+			} else {
+				localStorage.removeItem(providerKey)
+				this.$router.push({ name: 'home'})
+			}
+
+			this.validatingTokenProvider = false
+		},
 	},
 	created(){
-		this.validateToken()
+		this.validateToken(),
+		this.validateTokenProvider()
 	}
 }
 </script>

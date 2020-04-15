@@ -7,8 +7,6 @@ import AdminAuth from '../components/home_pages/AdminAuth'
 import Contact from '../components/home_pages/Contact'
 import About from '../components/home_pages/About'
 
-import Provider from '../components/provider_pages/Provider'
-
 import Admins from '../components/admin_pages/Admins'
 import Providers from '../components/admin_pages/Providers'
 import AdminConfigs from '../components/admin_pages/AdminConfigs'
@@ -53,12 +51,7 @@ const routes = [{
         path: '/fornecedores',
         component: Providers,
         meta: {requiresAdmin: true}
-    }, {
-        name: 'fornecedor',
-        path: '/fornecedor',
-        component: Provider
-    }
-    
+    }    
 ]
 
 const router = new VueRouter({

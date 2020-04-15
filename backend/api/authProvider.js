@@ -1,4 +1,4 @@
-const { authSecret } = require('../.env')
+const { authSecretProvider } = require('../.env')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
 
@@ -30,7 +30,7 @@ module.exports = app =>{
 
         res.json({
             ...payload,
-            token: jwt.encode(payload, authSecret)
+            token: jwt.encode(payload, authSecretProvider)
         })
     }
 
@@ -38,7 +38,7 @@ module.exports = app =>{
         const providerData = req.body || null
         try {
             if(providerData) {
-                const token = jwt.decode(providerData.token, authSecret)
+                const token = jwt.decode(providerData.token, authSecretProvider)
                 if(new Date(token.exp * 1000) > new Date()) {
                     return res.send(true)
                 }
