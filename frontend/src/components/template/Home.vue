@@ -1,6 +1,6 @@
 <template >
    <div class="home">
-       <div v-if="!user">
+       <div v-show="!user || undefined">
            <b-row>
                <b-col md="8" sm="12">
                    <div class="text-information">
@@ -37,30 +37,34 @@
                </b-col>
            </b-row>
        </div>
-       <Titles
-            icon="home"
-            main="Início"
-            v-if="admin"
-       />
-        <Titles
-            icon="user"
-            main="Bem vindo a essa merda"
-            v-if="fornecedor"
-        />
+       <div v-show="user && admin">
+           <Titles
+                icon="home"
+                main="Início"
+                v-if="admin"
+            />
         
-       <div class="stats" v-if="admin">
-           <Stat
-                title="Fornecedores" :value="10"
-                icon="supervised_user_circle" color="#E0F7FA"
-           />
-           <Stat
-                title="Óleo em Estoque" :value="10 + ' litros'"
-                icon="widgets" color="#EEFF41"
-           />
-           <Stat
-                title="Qualquer Coisa" :value="15"
-                icon="bug_report" color="#FF8A65"
-           />
+            <div class="stats" v-if="admin">
+                <Stat
+                        title="Fornecedores" :value="10"
+                        icon="supervised_user_circle" color="#E0F7FA"
+                />
+                <Stat
+                        title="Óleo em Estoque" :value="10 + ' litros'"
+                        icon="widgets" color="#EEFF41"
+                />
+                <Stat
+                        title="Qualquer Coisa" :value="15"
+                        icon="bug_report" color="#FF8A65"
+                />
+            </div>
+       </div>
+       <div v-show="user && fornecedor">
+           <Titles
+                icon="home"
+                main="Bem vindo a essa mizera"
+                v-show="fornecedor"
+            />
        </div>
 
    </div>
