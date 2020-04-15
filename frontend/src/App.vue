@@ -1,9 +1,9 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible || !admin, 'isNav': !isMenuVisible && !admin}">
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !user , 'isNav': !isMenuVisible && !user}">
 		<Header title="Sistema de Fornecimento" 
-			:hideToggle="!admin"/>
-		<Nav v-if="!admin"/>
-		<Menu v-if="admin"/>
+			:hideToggle="!user"/>
+		<Nav v-if="!user"/>
+		<Menu v-if="user"/>
 		<Loading v-if="validatingToken "/>
 		<Content v-else/>
 		<Footer/>
@@ -24,7 +24,7 @@ import { baseApiUrl, adminKey, providerKey} from  './global'
 export default {
 	name: 'App',
 	components: { Header, Footer, Menu, Content, Loading, Nav },
-	computed: mapState(['isMenuVisible', 'admin', 'fornecedor']),
+	computed: mapState(['isMenuVisible', 'admin', 'fornecedor', 'user']),
 	data() {
 		return {
 			validatingToken: true,

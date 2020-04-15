@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios  from 'axios'
-import { baseApiUrl, showError} from '../global'
 
 Vue.use(Vuex)
 
@@ -10,10 +9,11 @@ export default new Vuex.Store({
         isMenuVisible: false,
         fornecedor:null,
         admin: null,
+        user: null
     },
     mutations:{
         toggleMenu(state, isVisible){
-            if(!state.admin){
+            if(!state.user){
                 state.isMenuVisible = false
                 return
             }
@@ -22,13 +22,17 @@ export default new Vuex.Store({
             } else {
                 state.isMenuVisible = isVisible
             }
-        },
+        },    
         setProvider(state, fornecedor) {
             state.fornecedor = fornecedor
             if(fornecedor) {
                 axios.defaults.headers.common['Authorization'] = `bearer ${fornecedor.token}`
+                state.user = true
+                state.isMenuVisible = true
             } else {
                 delete axios.defaults.headers.common['Authorization']
+                state.isMenuVisible = false
+                state.user = false
             }
         },
         setAdmin(state, admin){
@@ -36,13 +40,12 @@ export default new Vuex.Store({
             if(admin){
                 axios.defaults.headers.common['Authorization'] = `bearer ${admin.token}`
                 state.isMenuVisible = true
+                state.user = true
             } else {
                 delete axios.defaults.headers.common['Authorization']
                 state.isMenuVisible = false
+                state.user = false
             }
-        },
-        updateAdmin(state, admin){
-            state.admin = admin
         }
     }
 })

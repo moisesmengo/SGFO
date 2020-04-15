@@ -1,7 +1,7 @@
 <template>
     <aside class="menu" v-show="isMenuVisible">
         <div class="menu-items">
-            <ul>
+            <ul v-if="admin">
                 <li>
                     <router-link to="/">
                         <div class="content-list-menu">
@@ -27,6 +27,33 @@
                     </router-link>
                 </li>
             </ul>
+
+            <ul v-if="fornecedor">
+                <li>
+                    <router-link to="/">
+                        <div class="content-list-menu">
+                            <i class="material-icons">Romi</i>
+                            <p>Início</p>
+                        </div>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/configuracoes">
+                        <div class="content-list-menu">
+                            <i class="material-icons">settings</i>
+                            <p>Alguma coisa</p>
+                        </div>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/fornecedores">
+                        <div class="content-list-menu">
+                            <i class="material-icons">group</i>
+                            <p>Coisa nenhuma</p>
+                        </div>
+                    </router-link>
+                </li>
+            </ul>
         </div>
     </aside>
 </template>
@@ -36,7 +63,7 @@ import { mapState } from 'vuex'
 export default {
     name: 'Menu',
     computed:{
-        ...mapState(['isMenuVisible']),
+        ...mapState(['isMenuVisible', 'admin', 'fornecedor']),
     },
     data() {
         return {

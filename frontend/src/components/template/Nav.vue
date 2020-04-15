@@ -67,4 +67,8 @@ export default {
         background-color: rgba(0, 0, 0, 0.2);
         color: #0D0D0D;
     }
+
+    @media only screen and (max-device-width: 700px) {
+        
+    }
 </style>

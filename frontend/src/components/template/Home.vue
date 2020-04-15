@@ -20,15 +20,15 @@
                         <form>
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
-                                <input type="email" placeholder="Digite seu e-mail">
+                                <input type="email" v-model="fornecedor.email" placeholder="Digite seu e-mail">
                             </div>
                             <div class="form-group">
                                 <label for="senha">Senha:</label>
-                                <input type="password" placeholder="Digite sua senha">
+                                <input type="password" v-model="fornecedor.senha" placeholder="Digite sua senha">
                             </div>
                         </form>
                         <a class="remember-password" href="">Esqueceu sua senha?</a>
-                        <button class="button" type="submit">ENTRAR</button>
+                        <button class="button" type="submit" @click.prevent="signin">ENTRAR</button>
                         <router-link to="/registro" class="register">Ainda não é fornecedor? Cadastre-se aqui</router-link>
                    </div>
                </b-col>
@@ -101,7 +101,7 @@ export default {
                 .then(res => {
                     this.$store.commit('setProvider', res.data)
                     localStorage.setItem(providerKey, JSON.stringify(res.data))
-                    this.$router.push({ path: '/fornecedores' })
+                    this.$router.push({ path: '/fornecedor' })
                 }).catch(showError)
                 
         },
@@ -123,5 +123,4 @@ export default {
             display: none;
         }
     }
-   
 </style>
