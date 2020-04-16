@@ -59,11 +59,11 @@
                 />
             </div>
        </div>
-       <div v-show="user && fornecedor">
+       <div v-show="user && provider">
            <Titles
                 icon="home"
                 main="Bem vindo a essa mizera"
-                v-show="fornecedor"
+                v-show="provider"
             />
        </div>
 
@@ -90,7 +90,7 @@ export default {
         ...mapState({
             user: 'user',
             admin: 'admin',
-            fornecedor: 'fornecedor'
+            provider: 'fornecedor'
         }),
     },
     components:{ Titles, Stat },

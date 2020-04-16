@@ -40,6 +40,10 @@ export default {
                 localStorage.removeItem(adminKey)
                 this.$store.commit('setAdmin', null)
                 this.$router.push({ name: 'administracao'})
+            }else if(this.fornecedor){
+                localStorage.removeItem(providerKey)
+                this.$store.commit('setProvider', null)
+                this.$router.push({ path: '/'})
             }
         }
     }

@@ -32,7 +32,7 @@
                 <li>
                     <router-link to="/">
                         <div class="content-list-menu">
-                            <i class="material-icons">Romi</i>
+                            <i class="material-icons">home</i>
                             <p>Início</p>
                         </div>
                     </router-link>
