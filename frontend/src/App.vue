@@ -44,7 +44,7 @@ export default {
 				return 
 			}
 
-			const res = await axios.post(`${ baseApiUrl}/validateTokenAdmin`, adminData)
+			const res = await axios.post(`${ baseApiUrl }/validateTokenAdmin`, adminData)
 
 			if(res.data){
 				this.$store.commit('setAdmin', adminData)

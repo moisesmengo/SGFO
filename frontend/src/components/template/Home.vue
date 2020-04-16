@@ -62,23 +62,35 @@
        <div v-show="user && provider">
            <Titles
                 icon="home"
-                main="Bem vindo a essa mizera"
+                main="Início"
                 v-show="provider"
             />
+
+           
+            <b-card title="Bem Vindo" 
+                sub-title="Informe ao IFRN sempre que for necessário o recolhimento de matéria prima"
+                class="card-provider"
+            >
+            </b-card>
+            
        </div>
 
    </div>
 </template>
 <script>
 import axios from 'axios'
-import { baseApiUrl, showError, providerKey } from '../../global'
+
 import Titles from './Titles'
-import { mapState } from 'vuex'
 import Stat from '../admin_pages/Stat'
+
+import { baseApiUrl, showError, providerKey } from '../../global'
+import { mapState } from 'vuex'
+
 import quimica from '../../asets/quimica.png'
 import '../../asets/pages-home-global-styles.css'
 
 export default {
+    name: 'Home',
     data() {
         return {
             showSignup: true,
@@ -119,6 +131,17 @@ export default {
 }
 </script>
 <style lang="css">
+    .card-provider{
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .card-provider .card-title{
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+    .card-provider .card-subtitle{
+        font-size: 1.1rem;
+    }
     .stats{
         display: flex;
         justify-content: space-between;
