@@ -26,6 +26,14 @@
                         </div>
                     </router-link>
                 </li>
+                <li>
+                    <router-link to="/">
+                        <div class="content-list-menu">
+                            <i class="material-icons">feedback</i>
+                            <p>Solicitações</p>
+                        </div>
+                    </router-link>
+                </li>
             </ul>
 
             <ul v-if="fornecedor">
@@ -40,28 +48,32 @@
                 <li>
                     <router-link to="/configuracoes">
                         <div class="content-list-menu">
-                            <i class="material-icons">settings</i>
-                            <p>Alguma coisa</p>
+                            <i class="material-icons">feedback</i>
+                            <p>Solicitacoes</p>
                         </div>
                     </router-link>
                 </li>
                 <li>
                     <router-link to="/fornecedores">
                         <div class="content-list-menu">
-                            <i class="material-icons">group</i>
-                            <p>Coisa nenhuma</p>
+                            <i class="material-icons">settings</i>
+                            <p>Configurações</p>
                         </div>
                     </router-link>
                 </li>
             </ul>
+            <hr>
+            <ModalNew/>
         </div>
     </aside>
 </template>
 <script>
 import { mapState } from 'vuex'
+import ModalNew from '../provider_pages/ModalNew'
 
 export default {
     name: 'Menu',
+    components: {ModalNew},
     computed:{
         ...mapState(['isMenuVisible', 'admin', 'fornecedor']),
     },
@@ -72,7 +84,7 @@ export default {
     },
 }
 </script>
-<style lang="css">
+<style>
     .menu{
         grid-area: menu;
         background: linear-gradient(to right, #276DB1, rgb(46, 116, 185));

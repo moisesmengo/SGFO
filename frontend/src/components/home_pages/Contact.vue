@@ -16,7 +16,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Mensagem:</label>
-                            <textarea placeholder="Digite seu email" ></textarea>
+                            <textarea placeholder="Digite sua mensagem" ></textarea>
                         </div>
                     </form>
                     <button type="submit" class="button">ENVIAR</button>
