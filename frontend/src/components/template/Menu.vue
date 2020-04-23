@@ -29,7 +29,7 @@
                 <li>
                     <router-link to="/">
                         <div class="content-list-menu">
-                            <i class="material-icons">feedback</i>
+                            <i class="material-icons">list</i>
                             <p>Solicitações</p>
                         </div>
                     </router-link>
@@ -46,9 +46,9 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/configuracoes">
+                    <router-link to="/minhas-solicitacoes">
                         <div class="content-list-menu">
-                            <i class="material-icons">feedback</i>
+                            <i class="material-icons">list</i>
                             <p>Solicitacoes</p>
                         </div>
                     </router-link>
@@ -62,8 +62,8 @@
                     </router-link>
                 </li>
             </ul>
-            <hr>
-            <ModalNew/>
+            <hr v-if="fornecedor">
+            <ModalNew v-if="fornecedor" />
         </div>
     </aside>
 </template>
@@ -98,6 +98,16 @@ export default {
    .menu .menu-items ul{
        list-style: none;
        padding: 0;
+   }
+   .menu .menu-items hr{
+        border: 0;
+        width: 100%;
+        height: 3px;
+        background-image: linear-gradient(to right, 
+        rgba(93, 152, 219, 0.274),
+        rgba(25, 22, 192, 0.897),
+        rgba(3, 7, 68, 0.596),
+        rgba(93, 152, 219, 0.274));
    }
    .menu .menu-items{
        display: flex;

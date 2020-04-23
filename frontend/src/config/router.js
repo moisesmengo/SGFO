@@ -11,6 +11,8 @@ import Admins from '../components/admin_pages/Admins'
 import Providers from '../components/admin_pages/Providers'
 import AdminConfigs from '../components/admin_pages/AdminConfigs'
 
+import Solicitations from '../components/provider_pages/Solicitations'
+
 import {adminKey} from '../global'
 
 Vue.use(VueRouter)
@@ -51,6 +53,10 @@ const routes = [{
         path: '/fornecedores',
         component: Providers,
         meta: {requiresAdmin: true}
+    }, {
+        name: 'solicitacoes',
+        path: '/minhas-solicitacoes',
+        component: Solicitations
     }    
 ]
 
