@@ -1,11 +1,12 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('admins', table =>{
+  return knex.schema.createTable('admins', table => {
     table.increments('id').primary()
     table.string('nome').notNull()
-    table.string('email').notNull().unique()
+    table.string('email').notNull()
     table.string('senha').notNull()
-    table.boolean('admin').defaultTo(true)
+    table.timestamp('deletedAt')
+    table.string('imagemUrl')
   })
 };
 

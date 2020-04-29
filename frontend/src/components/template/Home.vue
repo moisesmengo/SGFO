@@ -60,17 +60,18 @@
             </div>
        </div>
        <div v-show="user && provider">
+           
            <Titles
                 icon="home"
                 main="Início"
                 v-show="provider"
             />
 
-           
-            <b-card title="Bem Vindo" 
+            <b-card title="Bem Vindo"
                 sub-title="Informe ao IFRN sempre que for necessário o recolhimento de matéria prima"
                 class="card-provider"
             >
+            
             </b-card>
             
        </div>

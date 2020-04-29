@@ -13,10 +13,13 @@ module.exports = app =>{
         if(req.params.id) fornecedor.id = req.params.id
 
         try {
-            existsOrError(fornecedor.nome, "Nome não informado")
+            existsOrError(fornecedor.estabelecimento, "Estabelecimento não informado")
             existsOrError(fornecedor.email, "E-mail não informado")
             existsOrError(fornecedor.cidade, "Cidade não informada")
             existsOrError(fornecedor.estado, "Estado não informado")
+            existsOrError(fornecedor.referencia, "Ponto de referência não informado")
+            existsOrError(fornecedor.responsavel, "Funcionário responsável não informado")
+            existsOrError(fornecedor.telefone, "Telefone não informado")
             existsOrError(fornecedor.endereco, "Endereço não informado")
             existsOrError(fornecedor.senha, "Senha não informada")
             existsOrError(fornecedor.confirmarSenha, "Confirmação de senha inválida")
@@ -61,7 +64,7 @@ module.exports = app =>{
         const count = parseInt(result.count)
 
         app.db('fornecedores')
-            .select('id','nome','email', 'cidade')
+            .select('id','estabelecimento','email', 'cidade')
             .whereNull('deletedAt')
             .limit(limit).offset(page* limit - limit)
             .then(fornecedores => res.json({data:fornecedores, count, limit}))

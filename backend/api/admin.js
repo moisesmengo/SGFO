@@ -70,15 +70,16 @@ module.exports = app =>{
             .catch(err => res.status(500).send(err))
     }
 
-    const remove = async (req, res) =>{
+    const remove = async (req, res)=>{
         try {
-            const rowsDeleted =  await app.db('admins')
-                .where({id: req.params.id}).del()
-            existsOrError(rowsDeleted, 'Administrador não encontrado')
+            const rowsUpdated = await app.db('admins')
+                .update({deletedAt: new Date()})
+                .where({id: req.params.id})
+            existsOrError(rowsUpdated, 'Administrador não foi encontrado')
 
             res.status(204).send()
         } catch (error) {
-            res.status(500).send()
+            res.status(400).send(error)
         }
     }
 
