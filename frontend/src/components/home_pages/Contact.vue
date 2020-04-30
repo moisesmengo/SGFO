@@ -1,8 +1,8 @@
 <template>
-    <div class="contact-content">
-        <b-row>
+    <div class="main-content">
+        <b-row >
             <b-col md="6" sm="12">
-                <div class="content-form">
+                <div class="content-form ml-4">
                     <h1 class="title-info">Entre em contato</h1>
                     <hr>
                     <form>
@@ -24,10 +24,8 @@
             </b-col>
             <b-col md="6" sm="12">
                 <div class="contact-information">
-                    <h1 class="title-info">Informações de contato</h1>
-                    <hr>
                 
-                    <div class="text-information">
+                    <div class="title-info">
                         <p>Instituto Federal de Educação, Ciência e Tecnologia do 
                         Rio Grande do Norte | Nova Cruz</p>
                     </div>
@@ -64,17 +62,21 @@ export default {
 }
 </script>
 <style lang="css">
-    .contact-content .contact-information{
-        margin-top: 30px;
+    .contact-information{
+        margin: 20px 25px auto 0;
     }
-    .contact-content .contact-information ul{
+    .contact-information ul{
         list-style-type:none;
+    }
+    .main-content .content-form{
+        border-right: 3px solid #2a3756;
     }
     .item-information {
         display:flex;
         flex-direction: row;
         justify-content: end;
-       
+        padding-top: 25px;
+        margin-right: 30px;
     }
     .item-information i{
         margin-right: 15px;
@@ -85,5 +87,18 @@ export default {
     .item-information p{
         font-size: 16px;
         color:#0d0d0d;
+    }
+    @media only screen and (max-device-width: 700px) {
+        .main-content .content-form{
+            padding-left: 0px;
+            padding-right: 30px;
+        }
+        .contact-information{
+            padding-left: 5px;
+        }
+        .main-content .content-form{
+            border-right:none;
+            
+        }
     }
 </style>
