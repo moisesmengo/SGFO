@@ -2,10 +2,12 @@
     width: 100%;
     background-color: #DFE2E5;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .content-form{
-  padding: 30px 30px 30px 0  ;
+  padding: 30px 30px 30px 0 ;
 }
 .content-form .form-group{
     display: flex;
@@ -32,7 +34,6 @@
 .img{
     width: 100%;
     height: 100%;
-    border-right: #2a3756 3px solid;
 }
 input{
     width: 100%;
@@ -148,7 +149,6 @@ hr{
     .img{
         width: 100%;
         height: 100%;
-        border-bottom: #2a3756 3px solid;
         border-right: none;
     }
 }

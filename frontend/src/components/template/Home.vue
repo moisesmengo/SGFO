@@ -121,6 +121,9 @@ export default {
 }
 </script>
 <style lang="css">
+    .home .main-content .row{
+        width: 100%;
+    }
     .card-provider{
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
