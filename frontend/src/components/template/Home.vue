@@ -1,19 +1,11 @@
 <template >
    <div class="home">
-       <div v-show="!user || undefined">
-           <b-row>
-               <b-col md="8" sm="12">
-                   <div class="text-information">
-                        <p>
-                            Ajude o IFRN a conseguir matéria prima para a confecção de 
-                            produtos de higiene pessoal.
-                        </p>
-                   </div>
+       <div v-show="!user || undefined" class="main-content">
+           <b-row >
+               <b-col md="6" sm="12">
+                   <img :src="quimica" class="img" alt="Vidrarias">
                </b-col>
-               <b-col md="4" sm="0"></b-col>
-           </b-row>
-           <b-row>
-               <b-col md="8" sm="12">
+               <b-col md="6" sm="12">
                    <div class="content-form">
                         <h1 class="title-info">Já é um fornecedor? Faça login</h1>
                         <hr>
@@ -31,9 +23,6 @@
                         <button class="button" type="submit" @click.prevent="signin">ENTRAR</button>
                         <router-link to="/registro" class="register">Ainda não é fornecedor? Cadastre-se aqui</router-link>
                    </div>
-               </b-col>
-               <b-col md="4" sm="0">
-                   <img :src="quimica" class="img" alt="Vidrarias">
                </b-col>
            </b-row>
        </div>
@@ -149,12 +138,5 @@ export default {
         flex-wrap: wrap;
         margin-top: 20px;
     }
-    @media only screen and (max-device-width: 700px) {
-        .text-information p{
-            font-size: 12px;
-        }
-        .home .img{
-            display: none;
-        }
-    }
+  
 </style>
