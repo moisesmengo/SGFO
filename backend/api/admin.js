@@ -36,6 +36,7 @@ module.exports = app =>{
         if(admin.id) {
             app.db('admins')
                 .update(admin)
+                .whereNull('deletedAt')
                 .where({ id: admin.id })
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
@@ -57,6 +58,7 @@ module.exports = app =>{
 
         app.db('admins')
             .select('id','nome','email')
+            .whereNull('deletedAt')
             .limit(limit).offset(page * limit - limit)
             .then(admins => res.json({data:admins, count, limit}))
             .catch(err => res.status(500).send(err))

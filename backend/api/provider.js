@@ -66,7 +66,7 @@ module.exports = app =>{
         app.db('fornecedores')
             .select('id','estabelecimento','email', 'cidade')
             .whereNull('deletedAt')
-            .limit(limit).offset(page* limit - limit)
+            .limit(limit).offset(page * limit - limit)
             .then(fornecedores => res.json({data:fornecedores, count, limit}))
             .catch(err => res.status(500).send(err))
     }

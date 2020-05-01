@@ -42,17 +42,17 @@ const routes = [{
         name:'configuracoes',
         path:'/configuracoes',
         component: AdminConfigs,
-        meta: {requiresAdmin: true}
+        //meta: {requiresAdmin: true}
     }, {
         name: 'gerenciaAdmins',
         path: '/administradores',
         component: Admins,
-        meta: {requiresAdmin: true}
+        //meta: {requiresAdmin: true}
     }, {
         name: 'gerenciaFornecedores',
         path: '/fornecedores',
         component: Providers,
-        meta: {requiresAdmin: true}
+        //meta: {requiresAdmin: true}
     }, {
         name: 'solicitacoes',
         path: '/minhas-solicitacoes',
@@ -65,7 +65,7 @@ const router = new VueRouter({
     routes
 })
 
-router.beforeEach((to, from, next) =>{
+/*router.beforeEach((to, from, next) =>{
     const json = localStorage.getItem(adminKey)
     if(to.matched.some(record => record.meta.requiresAdmin)){
         const admin = JSON.parse(json)
@@ -73,6 +73,6 @@ router.beforeEach((to, from, next) =>{
     } else{
         next()
     }
-})
+})*/
 
 export default router
