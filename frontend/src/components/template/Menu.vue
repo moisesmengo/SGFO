@@ -19,7 +19,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/fornecedores">
+                    <router-link to="/gerencia-fornecedores">
                         <div class="content-list-menu">
                             <i class="material-icons">group</i>
                             <p>Fornecedores</p>

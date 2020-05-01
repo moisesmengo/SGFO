@@ -93,6 +93,7 @@ export default {
 
 	body{
 		margin: 0;
+		padding-right: none;
 	}
 	
 	#app{

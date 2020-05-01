@@ -1,6 +1,6 @@
 <template>
     <div class="admins">
-        <h4>Cadastrar Administrador</h4>
+        <h3>Cadastrar Administrador</h3>
         <hr>
         <b-form>
             <input id="admin-id" type="hidden" v-model="admin.id"/>
@@ -67,7 +67,7 @@
 
         <div class="content-table-admins">
             <div class="filter-and-title"> 
-                <h3>Administradores</h3>
+                <h3>Administradores Cadastrados</h3>
                 <div class="adm-filter">
                     <i class="fa fa-search"></i>
                     <input type="text" 

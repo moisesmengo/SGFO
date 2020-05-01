@@ -8,8 +8,8 @@ import Contact from '../components/home_pages/Contact'
 import About from '../components/home_pages/About'
 
 import Admins from '../components/admin_pages/Admins'
-import Providers from '../components/admin_pages/Providers'
 import AdminConfigs from '../components/admin_pages/AdminConfigs'
+import ProvidersConfig from '../components/admin_pages/ProvidersConfig'
 
 import Solicitations from '../components/provider_pages/Solicitations'
 
@@ -49,15 +49,14 @@ const routes = [{
         component: Admins,
         //meta: {requiresAdmin: true}
     }, {
-        name: 'gerenciaFornecedores',
-        path: '/fornecedores',
-        component: Providers,
-        //meta: {requiresAdmin: true}
-    }, {
         name: 'solicitacoes',
         path: '/minhas-solicitacoes',
         component: Solicitations
-    }    
+    }, {
+        name: 'configuracoesFornecedores',
+        path: '/gerencia-fornecedores',
+        component: ProvidersConfig
+    }  
 ]
 
 const router = new VueRouter({

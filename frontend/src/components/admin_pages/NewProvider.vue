@@ -1,0 +1,134 @@
+<template>
+    <div class="new-provider">
+        <h3>Cadastrar Fornecedor</h3>
+        <hr>
+        <b-form>
+            <input id="admin-id" type="hidden"/>
+            <b-row>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Nome do Estabelecimento: *" label-for="estabelecimento">
+                        <b-form-input
+                            id="estabelecimento" type="text" 
+                            placeholder="Informe o nome do estabelecimento"
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="E-mail: *" label-for="email">
+                        <b-form-input
+                            id="email" type="email" 
+                            placeholder="Informe um e-mail"
+                        />
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Senha: *" label-for="senha">
+                        <b-form-input
+                            id="senha" type="password" 
+                            placeholder="Informe uma senha provisória"
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Confirmar senha: *" label-for="confirmar-senha">
+                        <b-form-input
+                            id="confirmar-senha" type="password" 
+                            placeholder="Confirme a senha"
+                        />
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Telefone: *" label-for="telefone">
+                        <b-form-input
+                            id="telefone" type="text" 
+                            placeholder="Informe um telefone"
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Funcionário responsável: *" label-for="responsavel">
+                        <b-form-input
+                            id="responsavel" type="text" 
+                            placeholder="Informe um funcionário responsável"
+                        />
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col md="4" sm="12" >
+                    <b-form-group label="Cidade: *" label-for="cidade">
+                        <b-form-input
+                            id="cidade" type="text" 
+                            placeholder="Informe a cidade"
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col md="2" sm="12" >
+                    <b-form-group label="Estado: *" label-for="estado">
+                        <b-form-input
+                            id="estado" type="text" 
+                            placeholder=""
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12" >
+                    <b-form-group label="Endereço: *" label-for="endereco">
+                        <b-form-input
+                            id="endereco" type="text" 
+                            placeholder="Informe um telefone"
+                        />
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Ponto de referência: *" label-for="rferencia">
+                        <b-form-input
+                            id="rferencia" type="text" 
+                            placeholder="Informe um ponto de referência"
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Status: " label-for="status">
+                        <b-form-input
+                            id="status" type="text" 
+                            placeholder=""
+                        />
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col xs="12">
+                    <b-button 
+                        variant="primary" 
+                        @click="save"
+                    >Salvar</b-button>
+                    <b-button 
+                        class="ml-2" 
+                        @click="reset"
+                    >Cancelar</b-button>
+                </b-col>
+            </b-row>
+        </b-form>
+    </div>
+</template>
+<script>
+
+export default {
+    name: 'NewProvider',
+    data() {
+        return {
+           
+        }
+    },
+    
+}
+</script>
+<style lang="css">
+    
+</style>

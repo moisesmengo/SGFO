@@ -1,10 +1,5 @@
 <template>
     <div>
-        <Titles
-            main="Fornecedores Cadastrados"
-            icon="folder_shared"
-        />
-
         <div class="format-data" v-show="mode === 'view' || mode === 'remove'">
             <b-row>
                 <b-col md="4" sm="12">
@@ -86,12 +81,12 @@
                     </div>
                 </b-col>
             </b-row> 
+            <hr>
         </div>
-        <hr>
-
+ 
         <div class="content-table-provider">
             <div class="filter-and-title-provider"> 
-                <h3>Fornecedores</h3> 
+                <h3>Fornecedores cadastrados</h3> 
                 <div class="provider-filter">
                     <i class="fa fa-search"></i>
                     <input type="text" 
@@ -126,12 +121,12 @@
     </div>
 </template>
 <script>
-import Titles from '../template/Titles'
 import { baseApiUrl, showError } from '../../global'
+
 import axios from 'axios'
 export default {
     name: 'Providers',
-    components:{ Titles },
+    components:{ },
     data() {
         return {
             search: '',
@@ -140,7 +135,7 @@ export default {
             fornecedores: [],
             fields:[
                 {key: 'id', label: 'Código', sortable: true},
-                {key: 'nome', label: 'Nome', sortable: true},
+                {key: 'estabelecimento', label: 'Estabelecimento', sortable: true},
                 {key: 'cidade', label: 'Cidade', sortable: true},
                 {key: 'email', label: 'E-mail', sortable: true},
                 {key: 'acoes', label: 'Ações'},
