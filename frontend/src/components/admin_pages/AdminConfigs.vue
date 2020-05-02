@@ -1,7 +1,7 @@
 <template>
     <div class="admin-configs">
         <Titles
-            icon="build"
+            icon="settings"
             main="Configurações"      
        />
        <div class="admin-config-tabs">

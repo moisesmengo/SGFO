@@ -1,134 +1,146 @@
 <template>
     <div>
-        <div class="format-data" v-show="mode === 'view' || mode === 'remove'">
-            <b-row>
-                <b-col md="4" sm="12">
-                    <div class="image-and-name">
-                        <img :src="fornecedor.imagemUrl" width="100px" height="150px" >
-                        <span>{{fornecedor.nome}}</span>
-                    </div>
-                </b-col>
-                <b-col md="8" sm="12">
-                    <div class="data-form">
-                        <b-form>
-                            <b-row>
-                                <b-col md="12" sm="12">
-                                    <b-form-group label="E-mail:" label-for="provider-email">
-                                        <b-form-input
-                                            id="provider-email" type="text" 
-                                            :readonly="mode === 'remove' || mode=== 'view'" 
-                                            v-model="fornecedor.email"
-                                        />       
-                                    </b-form-group>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col md="9" sm="12">
-                                    <b-form-group label="Cidade:" label-for="provider-city">
-                                        <b-form-input
-                                            id="provider-city" type="text"                                            
-                                            :readonly="mode === 'remove' || mode=== 'view'" 
-                                            v-model="fornecedor.cidade"
-                                        />       
-                                    </b-form-group>
-                                </b-col>
-                                <b-col md="3" sm="12">
-                                    <b-form-group label="Estado:" label-for="admin-estado">
-                                        <b-form-input
-                                            id="admin-estado" type="text"
-                                            :readonly="mode === 'remove' || mode=== 'view'" 
-                                            v-model="fornecedor.estado"
-                                        />       
-                                    </b-form-group>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col md="12" sm="12">
-                                    <b-form-group label="Endereço:" label-for="provider-address">
-                                        <b-form-input
-                                            id="provider-address" type="text"                                            
-                                            :readonly="mode === 'remove' || mode=== 'view'" 
-                                            v-model="fornecedor.endereco"
-                                        />       
-                                    </b-form-group>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col md="12" sm="12">
-                                    <b-form-group label="Telefone:" label-for="provider-phone">
-                                        <b-form-input
-                                            id="provider-phone" type="text"                                            
-                                            :readonly="mode === 'remove' || mode=== 'view'" 
-                                            v-model="fornecedor.telefone"
-                                        />       
-                                    </b-form-group>
-                                </b-col>
-                            </b-row>
-                                <b-row>
-                                    <b-col xs="12">
-                                        <b-button 
-                                            variant="danger" 
-                                            v-if="mode === 'remove'"
-                                            @click="remove"
-                                            class="mr-2" 
-                                        >Bloquear</b-button>
-                                        <b-button 
-                                            @click="reset"
-                                        >Cancelar</b-button>
-                                    </b-col>
-                                </b-row>
-                        </b-form>
-                    </div>
-                </b-col>
-            </b-row> 
-            <hr>
-        </div>
+        <transition name="slide-fade" mode="out-in">
+            <div class="format-data" v-show="mode === 'view' || mode === 'remove'" v-if="show">
+                <b-form>
+                    <b-row>
+                        <b-col md="6" sm="12">
+                            <b-form-group label="Nome do Estabelecimento:">
+                                <b-form-input
+                                    v-model="fornecedor.estabelecimento"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                        <b-col md="6" sm="12">
+                            <b-form-group label="E-mail: " >
+                                <b-form-input
+                                    v-model="fornecedor.email"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col md="6" sm="12">
+                            <b-form-group label="Telefone: " >
+                                <b-form-input
+                                    v-model="fornecedor.telefone"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                        <b-col md="6" sm="12">
+                            <b-form-group label="Funcionário responsável:" >
+                                <b-form-input
+                                    v-model="fornecedor.responsavel"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col md="4" sm="12" >
+                            <b-form-group label="Cidade:">
+                                <b-form-input
+                                    v-model="fornecedor.cidade"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                        <b-col md="2" sm="12" >
+                            <b-form-group label="Estado:" >
+                            <b-form-input                                
+                                    v-model="fornecedor.estado"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                        <b-col md="6" sm="12" >
+                            <b-form-group label="Endereço:" >
+                                <b-form-input
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                    v-model="fornecedor.endereco"
+                                />
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col md="6" sm="12">
+                            <b-form-group label="Ponto de referência:" >
+                                <b-form-input
+                                    v-model="fornecedor.referencia"
+                                    :readonly="mode === 'remove' || mode=== 'view'" 
+                                />
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col xs="12">
+                            <b-button 
+                                variant="danger" 
+                                v-if="mode === 'remove'"
+                                @click="remove"
+                                class="mr-2" 
+                            >Bloquear</b-button>
+                            <b-button 
+                                @click="reset"
+                            >Cancelar</b-button>
+                        </b-col>
+                    </b-row>
+                </b-form>
+                <hr>
+            </div>
+        </transition>
  
-        <div class="content-table-provider">
-            <div class="filter-and-title-provider"> 
-                <h3>Fornecedores cadastrados</h3> 
-                <div class="provider-filter">
-                    <i class="fa fa-search"></i>
-                    <input type="text" 
-                        placeholder="Buscar" 
-                        class="filter-field"
-                    >
+        <transition >
+            <div class="content-table-provider">
+                <div class="filter-and-title-provider"> 
+                    <h3>Fornecedores cadastrados</h3> 
+                    <div class="provider-filter">
+                        <i class="fa fa-search"></i>
+                        <input type="text" 
+                            placeholder="Buscar" 
+                            class="filter-field"
+                        >
+                    </div>
+                </div>
+                <div class="table-provider">
+                    <b-table 
+                        hover striped 
+                        :items="fornecedores" 
+                        :fields="fields">
+                        <template slot="acoes" slot-scope="data">
+                            <b-button variant="danger" @click="loadProvider(data.item, 'remove')" class="mr-2">
+                                <i class="fa fa-lock"></i>
+                            </b-button>
+                            <b-button variant="success" @click="loadProvider(data.item, 'view')">
+                                <i class="fa fa-eye"></i>
+                            </b-button>
+                        </template>
+                    </b-table>
+                </div>
+                <div class="content-pages-provider">
+                    <b-pagination size="md"
+                        v-model="page"
+                        :total-rows="count"
+                        :per-page="limit"
+                    ></b-pagination>
                 </div>
             </div>
-            <div class="table-provider">
-                <b-table 
-                    hover striped 
-                    :items="fornecedores" 
-                    :fields="fields">
-                    <template slot="acoes" slot-scope="data">
-                        <b-button variant="danger" @click="loadProvider(data.item, 'remove')" class="mr-2">
-                            <i class="fa fa-lock"></i>
-                        </b-button>
-                        <b-button variant="success" @click="loadProvider(data.item, 'view')">
-                            <i class="fa fa-eye"></i>
-                        </b-button>
-                    </template>
-                </b-table>
-            </div>
-            <div class="content-pages-provider">
-                <b-pagination size="md"
-                    v-model="page"
-                    :total-rows="count"
-                    :per-page="limit"
-                ></b-pagination>
-            </div>
-        </div>
+        </transition>
     </div>
 </template>
 <script>
 import { baseApiUrl, showError } from '../../global'
-
+import '../../asets/animations/slide-fade.css'
 import axios from 'axios'
 export default {
     name: 'Providers',
     components:{ },
     data() {
         return {
+            show: true,
             search: '',
             mode: null,
             fornecedor: {},
@@ -167,6 +179,7 @@ export default {
                 }).catch(showError)
         },
         loadProvider(fornecedor, mode = null){
+            if (fornecedor.bloqueado) true ? 'Bloqueado' : 'Desbloqueado'
             this.mode = mode
             axios.get(`${baseApiUrl}/fornecedores/${fornecedor.id}`)
                 .then(res=> this.fornecedor = res.data)
@@ -231,4 +244,5 @@ export default {
        outline: 0;
        width: 100%;
    }
+ 
 </style>

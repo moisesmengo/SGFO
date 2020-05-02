@@ -1,7 +1,7 @@
 <template>
     <div class="providers-configs">
         <Titles
-            icon="build"
+            icon="group"
             main="Gerenciar Fornecedores"      
        />
        <div class="providers-config-tabs">

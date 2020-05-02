@@ -24,25 +24,27 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-
-            <b-row v-show="mode === 'save'">
-                <b-col md="6" sm="12">
-                    <b-form-group label="Senha:" label-for="admin-password">
-                        <b-form-input
-                            id="admin-password" type="password" v-model="admin.senha"
-                            placeholder="cadastre uma senha temporária para o administrador"
-                        />       
-                    </b-form-group>
-                </b-col>
-                <b-col md="6" sm="12">
-                    <b-form-group label="Confirmar Senha:" label-for="admin-comfirm-password">
-                        <b-form-input
-                            id="admin-comfirm-password" type="password" v-model="admin.confirmarSenha"
-                            placeholder="Confirme a senha"
-                        />       
-                    </b-form-group>
-                </b-col>
-            </b-row>
+            <transition name="slide-fade" mode="out-in">
+                <b-row v-show="mode === 'save'">
+                        <b-col md="6" sm="12">
+                            <b-form-group label="Senha:" label-for="admin-password">
+                                <b-form-input
+                                    id="admin-password" type="password" v-model="admin.senha"
+                                    placeholder="cadastre uma senha temporária para o administrador"
+                                />       
+                            </b-form-group>
+                        </b-col>
+                        <b-col md="6" sm="12">
+                            <b-form-group label="Confirmar Senha:" label-for="admin-comfirm-password">
+                                <b-form-input
+                                    id="admin-comfirm-password" type="password" v-model="admin.confirmarSenha"
+                                    placeholder="Confirme a senha"
+                                />       
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+            </transition>
+            
             <b-row>
                 <b-col xs="12">
                     <b-button 
@@ -102,7 +104,7 @@
 <script>
 import axios from 'axios'
 import { baseApiUrl, showError } from '../../global'
-
+import '../../asets/animations/slide-fade.css'
 export default {
     name: 'Admins',
     data() {
