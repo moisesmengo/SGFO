@@ -27,5 +27,13 @@ module.exports = app =>{
         .get(app.api.provider.getById)
         .put(app.api.provider.save)
         .delete(app.api.provider.block)
-        
+
+    app.route('/itens')
+        .post(app.api.items.save)
+        .get(app.api.items.get)
+    
+    app.route('/itens/:id')
+        .get(app.api.items.getById)
+        .put(app.api.items.save)
+        .delete(app.api.items.remove)
 }

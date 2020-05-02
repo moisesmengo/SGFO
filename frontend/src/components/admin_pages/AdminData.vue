@@ -97,7 +97,7 @@
     </div>
 </template>
 <script>
-import '../../asets/animations/slide-fade.css'
+
 import { mapState, mapMutations } from 'vuex'
 import axios from 'axios'
 import { baseApiUrl, showError} from '../../App'
