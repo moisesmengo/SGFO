@@ -63,7 +63,7 @@ export default {
 
 			if(!providerData){
 				this.validatingTokenProvider = false
-				this.$router.push({name: 'home'})
+				//this.$router.push({name: 'home'})
 				return 
 			}
 

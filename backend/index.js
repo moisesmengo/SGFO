@@ -2,6 +2,11 @@ const app = require('express')()
 const consign = require('consign')
 const db = require('./config/db')
 const cors = require('cors')
+const multer = require('multer')
+
+app.use(multer({
+    dest:"./uploads"
+}).single('img'))
 
 app.db = db
 

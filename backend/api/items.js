@@ -55,8 +55,7 @@ module.exports = app =>{
         app.db('itens')
             .where({ id: req.params.id })
             .first()
-            .then(item => res.json(item)
-            )
+            .then(item => res.json(item))
             .catch(err => res.status(500).send(err))
     }
 

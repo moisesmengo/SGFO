@@ -37,14 +37,12 @@
             </b-row>
             <b-row>
                 <b-col md="12" sm="12">
-                    <b-form-group label="Imagem:" label-for="file-default" label-cols-sm="2">
-                        <b-form-file 
-                            @change="onFileChange($event)"
-                            multiple 
-                            file-name-formatter="formatNames"
-                            placeholder="Insira uma imagem"
-                            accept="image/png, image/jpeg">
-                        </b-form-file>
+                    <b-form-group label="Imagem URL:" label-for="imagemUrl">
+                        <b-form-input
+                            id="imagemUrl" type="text" 
+                            placeholder="URL da imagem"
+                            v-model="item.imagemUrl"
+                        />
                     </b-form-group>
                 </b-col>
             </b-row>
