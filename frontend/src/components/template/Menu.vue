@@ -27,10 +27,10 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/">
+                    <router-link to="/gerencia-itens">
                         <div class="content-list-menu">
-                            <i class="material-icons">list</i>
-                            <p>Solicitações</p>
+                            <i class="material-icons">category</i>
+                            <p>Itens</p>
                         </div>
                     </router-link>
                 </li>
