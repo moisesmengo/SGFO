@@ -1,5 +1,7 @@
 <template>
     <div class="items">
+        <h3 class="mb-3">Lista de itens</h3>
+        <hr>
         <ul>
             <li v-for="item in items" :key="item.id">
                 <item :item="item" />

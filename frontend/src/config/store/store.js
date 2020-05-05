@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios  from 'axios'
 
+import items from './modules/items'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -47,5 +49,6 @@ export default new Vuex.Store({
                 state.user = false
             }
         }
-    }
+    },
+    modules: {items}
 })

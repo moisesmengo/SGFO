@@ -15,6 +15,7 @@
                                     id="nome" type="text" 
                                     placeholder="Informe o nome do item"
                                     v-model="item.nome"
+                                    :readonly="mode === 'remove'" 
                                 />
                             </b-form-group>
                         </b-col>
@@ -23,6 +24,7 @@
                                 <b-form-input
                                     id="qtdEstoque" type="number" 
                                     v-model="item.qtdEstoque"
+                                    :readonly="mode === 'remove'" 
                                 />
                             </b-form-group>
                         </b-col>
@@ -31,6 +33,7 @@
                                 <b-form-input
                                     id="id" type="number" 
                                     v-model="item.id"
+                                    readonly
                                 />
                             </b-form-group>
                         </b-col>
@@ -39,8 +42,9 @@
                         <b-col md="12" sm="12">
                             <b-form-group label="Descrição:" label-for="descricao">
                                 <textarea id="descricao" 
-                                    cols="30" rows="10" 
-                                    class="item-desc" 
+                                    
+                                    class="item-desc form-control" 
+                                    :readonly="mode === 'remove'" 
                                     v-model="item.descricao">
                                 </textarea>
                             </b-form-group>
@@ -56,11 +60,13 @@
                                 variant="primary" 
                                 class="mb-2" 
                                 @click.prevent="save"
+                                v-show="mode === 'edit'"
                             >Salvar</b-button>
                             <b-button 
                                 class="mb-2" 
                                 variant="danger"
                                 @click.prevent="remove"
+                                v-show="mode === 'remove'"
                             >Excluir</b-button>
                         </b-col>
                     </b-row>
@@ -68,18 +74,19 @@
                 <b-col md="4" sm="12">   
                     <b-row>
                         <b-col md="12" sm="12">
-                            <div class="image-item-content mt-2" >
-                                <img v-if="item.imagemUrl" :src="item.imagemUrl" class="image-item">
+                            <div class="image-item-content mt-3" >
+                                <img v-if="item.imagemUrl" :src="item.imagemUrl" class="image-item" width="150px" height="150px">
                                 <img v-else src="https://pngimage.net/wp-content/uploads/2018/06/produto-png.png" class="image-item">
                             </div>
                         </b-col>
                     </b-row>
                     <b-row>
-                        <b-col md="12" sm="12" class="mt-2">
+                        <b-col md="12" sm="12" class="mt-4">
                             <b-form-group label="Imagem URL:" label-for="imagemUrl">
                                 <b-form-input
                                     id="imagemUrl" type="text" 
                                     v-model="item.imagemUrl"
+                                    :readonly="mode === 'remove'" 
                                 />
                             </b-form-group>
                         </b-col>
@@ -89,7 +96,7 @@
        </b-form>
        <hr>
        <b-row>      
-            <div class="controller-quantity-item">
+            <div class="controller-quantity-item" v-show="mode === 'edit'">
                 <span>Alterar quntidade em estoque</span>
                 <p>(O valor inserido será somado/subtraído ao valor total da quantidade)</p>
                     <input type="number" v-model="value">
@@ -115,12 +122,15 @@ export default {
     components: {Titles},
     data: function() {
         return {
-            item:{},
-            mode: null,
-            value: 0
+            item:{},   
+            value: 0,
         }
     },
-
+    computed:{
+        mode(){
+            return this.$store.state.items.mode
+        }
+    },
     mounted() {
         const url = `${baseApiUrl}/itens/${this.$route.params.id}`
         axios.get(url).then(res => this.item = res.data)
@@ -129,10 +139,11 @@ export default {
 </script>
 <style lang="css">
     .image-item-content{
-        width: 100%;
-        height: 230px;
+        width: auto;
+        height: 150px;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
     .controller-quantity-item{
         width: 100%;

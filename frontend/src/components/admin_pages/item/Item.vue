@@ -9,14 +9,19 @@
             <p> {{item.descricao}} </p>
             <span><strong>Quantidade em estoque: </strong> {{item.qtdEstoque}} </span>
             <div class="actions-items mt-3">
-                <button class="btn btn-secondary mr-2"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <router-link :to="{name: 'itemId', params: {id: item.id}}" >
+                    <button class="btn btn-secondary mr-2" @click="modeEdit()"><i class="fa fa-pencil"></i></button>
+                </router-link>
+                <router-link :to="{name: 'itemId', params: {id: item.id}}">
+                    <button class="btn btn-danger"  @click="modeRemove()"><i class="fa fa-trash"></i></button>
+                </router-link>
             </div>
         </div>
     </div>
 </template>
 <script>
 import img from '../../../asets/item.png'
+import {mapMutations}  from 'vuex'
 export default {
     name:'Item',
     data() {
@@ -24,7 +29,16 @@ export default {
             imgItem: img,
         }
     },
-    props:['item']
+    props:['item'],
+    methods:{
+        ...mapMutations(['setMode']),
+        modeEdit(){
+            this.setMode('edit')
+        },
+        modeRemove(){
+            this.setMode('remove')
+        }
+    }
 }
 </script>
 <style lang="css">
