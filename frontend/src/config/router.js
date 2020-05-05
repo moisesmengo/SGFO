@@ -10,8 +10,8 @@ import About from '../components/home_pages/About'
 import Admins from '../components/admin_pages/Admins'
 import AdminConfigs from '../components/admin_pages/AdminConfigs'
 import ProvidersConfig from '../components/admin_pages/ProvidersConfig'
-import ItemsConfig from '../components/admin_pages/ItemsConfig'
-import ItemById from '../components/admin_pages/ItemById'
+import ItemsConfig from '../components/admin_pages/item/ItemsConfig'
+import ItemById from '../components/admin_pages/item/ItemById'
 
 import Solicitations from '../components/provider_pages/Solicitations'
 

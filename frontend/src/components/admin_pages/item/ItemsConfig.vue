@@ -19,9 +19,9 @@
     </div>
 </template>
 <script>
-import Titles from '../template/Titles'
-import Itens from  '../admin_pages/Items'
-import NewItem from '../admin_pages/NewItem'
+import Titles from '../../template/Titles'
+import Itens from  '../item/Items'
+import NewItem from '../item/NewItem'
 
 export default {
     name: 'AdminConfigs',

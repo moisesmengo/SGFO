@@ -179,7 +179,6 @@ export default {
                 }).catch(showError)
         },
         loadProvider(fornecedor, mode = null){
-            if (fornecedor.bloqueado) true ? 'Bloqueado' : 'Desbloqueado'
             this.mode = mode
             axios.get(`${baseApiUrl}/fornecedores/${fornecedor.id}`)
                 .then(res=> this.fornecedor = res.data)
