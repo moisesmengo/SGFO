@@ -41,8 +41,7 @@
                     <b-row>
                         <b-col md="12" sm="12">
                             <b-form-group label="Descrição:" label-for="descricao">
-                                <textarea id="descricao" 
-                                    
+                                <textarea id="descricao"                                     
                                     class="item-desc form-control" 
                                     :readonly="mode === 'remove'" 
                                     v-model="item.descricao">
@@ -54,7 +53,7 @@
                         <b-col xs="12">
                             <b-button 
                                 class="mr-2 mb-2" 
-                                @click.prevent="reset"
+                                @click="$router.push({ path: '/gerencia-itens' })"
                             >Cancelar</b-button>
                             <b-button 
                                 variant="primary" 
@@ -114,7 +113,7 @@
 </template>
 <script>
 import axios from 'axios'
-import {baseApiUrl} from '../../../global'
+import {baseApiUrl, showError} from '../../../global'
 import Titles from  '../../template/Titles'
 
 export default {
@@ -129,6 +128,23 @@ export default {
     computed:{
         mode(){
             return this.$store.state.items.mode
+        }
+    },
+    methods:{
+        save(){
+            const id = this.item.id
+            axios.put(`${baseApiUrl}/itens/${id}`, this.item)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                }).catch(showError)   
+        },
+        remove(){
+            const id = this.item.id
+            axios.delete(`${baseApiUrl}/itens/${id}`, this.item)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                    this.$router.push({ path: '/gerencia-itens' })
+                }).catch(showError)   
         }
     },
     mounted() {
