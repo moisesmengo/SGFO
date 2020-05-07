@@ -97,25 +97,13 @@ export default {
     },
     components:{ Titles, Stat },
     methods:{
-        reset(){
-            this.fornecedor = {}
-        },
-        salvar(){
-            axios.post(`${baseApiUrl}/fornecedores`, this.fornecedor)
-                .then(()=>{
-                    this.$toasted.global.defaultSuccess()
-                    this.reset()
-                })
-                .catch(showError)
-        },
         signin() {
             axios.post(`${baseApiUrl}/signinProvider`, this.fornecedor)
                 .then(res => {
                     this.$store.commit('setProvider', res.data)
                     localStorage.setItem(providerKey, JSON.stringify(res.data))
                     this.$router.push({ path: '/' })
-                }).catch(showError)
-                
+                }).catch(showError)     
         },
     }
 }

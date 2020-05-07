@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav">
+  <nav class="nav" v-show="!user || undefined">
     <div class="basic-links">
         <router-link to="/">Início</router-link>
         <router-link to="/contato">Contato</router-link>
@@ -12,9 +12,15 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 
 export default {
-    name: "Footer"
+    name: "Footer",
+    computed:{
+        ...mapState({
+            user: 'user',
+        }),
+    },
 }
 </script>
 <style lang="css">
@@ -66,9 +72,5 @@ export default {
     {
         background-color: rgba(0, 0, 0, 0.2);
         color: #0D0D0D;
-    }
-
-    @media only screen and (max-device-width: 700px) {
-        
     }
 </style>

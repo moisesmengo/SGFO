@@ -4,13 +4,19 @@ const bcrypt = require('bcrypt-nodejs')
 
 module.exports = app =>{
     const signinProvider = async (req, res) => {
+
         if (!req.body.email || !req.body.senha) {
             return res.status(400).send('Informe usuário e senha! (Fornecedor)')
         }
+        
 
         const fornecedor = await app.db('fornecedores')
             .where({ email: req.body.email })
             .first()
+
+            if (fornecedor.bloqueado) {
+                return res.status(400).send('Fornecedor bloqueado ou aguardando aprovação')
+            }
 
         if (!fornecedor) return res.status(400).send('Fornecedor não encontrado!')
 
@@ -29,6 +35,7 @@ module.exports = app =>{
             cidade: fornecedor.cidade,
             estado: fornecedor.estado,
             endereco: fornecedor.endereco,
+            bloqueado: fornecedor.bloqueado,
 
             iat: now,
             exp: now + (60 * 60 * 24 * 3)

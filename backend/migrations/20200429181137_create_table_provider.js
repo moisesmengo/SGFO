@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
         table.string('estado').notNull()
         table.string('endereco').notNull()
         table.timestamp('deletedAt')
-        table.boolean('bloqueado').defaultTo(true)
+        table.boolean('bloqueado').notNull().defaultTo(true)
     })
   };
   

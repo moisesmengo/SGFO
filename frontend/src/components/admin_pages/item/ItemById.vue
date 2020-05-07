@@ -100,7 +100,7 @@
                 <p>(O valor inserido será somado/subtraído ao valor total da quantidade)</p>
                     <input type="number" v-model="value">
                     <div class="plus-or-less">
-                        <b-button variant="success">
+                        <b-button variant="success" @click="addQuantity()">
                             <i class="fa fa-plus"></i>
                         </b-button>
                         <b-button variant="danger">
@@ -123,6 +123,7 @@ export default {
         return {
             item:{},   
             value: 0,
+            newQuantity: 2,
         }
     },
     computed:{
@@ -136,6 +137,7 @@ export default {
             axios.put(`${baseApiUrl}/itens/${id}`, this.item)
                 .then(()=>{
                     this.$toasted.global.defaultSuccess()
+                    this.$router.push({ path: '/gerencia-itens' })
                 }).catch(showError)   
         },
         remove(){
@@ -145,6 +147,10 @@ export default {
                     this.$toasted.global.defaultSuccess()
                     this.$router.push({ path: '/gerencia-itens' })
                 }).catch(showError)   
+        },
+        addQuantity(){
+            const newQuantity = parseInt(this.item.qtdEstoque) + parseInt(this.value)
+
         }
     },
     mounted() {
