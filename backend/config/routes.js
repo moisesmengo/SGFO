@@ -22,6 +22,9 @@ module.exports = app =>{
         .get((app.api.provider.get))
         .post(app.api.provider.save)
 
+    app.route('/bloqueios')
+        .get(app.api.provider.getBlocks)
+
     app.route('/fornecedores/:id')
         .all(app.config.passport.authenticate())
         .get(app.api.provider.getById)

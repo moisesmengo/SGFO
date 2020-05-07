@@ -62,10 +62,25 @@ module.exports = app =>{
 
         const result = await app.db('fornecedores').count('id').first()
         const count = parseInt(result.count)
-
+        
         app.db('fornecedores')
             .select('id','estabelecimento','email', 'cidade')
             .whereNull('deletedAt')
+            .where('bloqueado', false)
+            .limit(limit).offset(page * limit - limit)
+            .then(fornecedores => res.json({data:fornecedores, count, limit}))
+            .catch(err => res.status(500).send(err))
+    }
+
+    const getBlocks = async (req, res)=>{
+        const page = req.query.page || 1
+
+        const result = await app.db('fornecedores').count('id').first()
+        const count = parseInt(result.count)
+        
+        app.db('fornecedores')
+            .select('id','estabelecimento','email', 'cidade')
+            .whereNotNull('deletedAt')
             .limit(limit).offset(page * limit - limit)
             .then(fornecedores => res.json({data:fornecedores, count, limit}))
             .catch(err => res.status(500).send(err))
@@ -94,5 +109,5 @@ module.exports = app =>{
         }
     }
 
-    return {save, getById, get, block}
+    return {save, getById, get, block, getBlocks}
 }

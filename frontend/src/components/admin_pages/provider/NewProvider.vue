@@ -126,7 +126,7 @@
 </template>
 <script>
 import axios from 'axios'
-import {baseApiUrl, showError} from '../../global'
+import {baseApiUrl, showError} from '../../../global'
 
 export default {
     name: 'NewProvider',

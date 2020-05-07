@@ -9,7 +9,7 @@ import About from '../components/home_pages/About'
 
 import Admins from '../components/admin_pages/Admins'
 import AdminConfigs from '../components/admin_pages/AdminConfigs'
-import ProvidersConfig from '../components/admin_pages/ProvidersConfig'
+import ProvidersConfig from '../components/admin_pages/provider/ProvidersConfig'
 import ItemsConfig from '../components/admin_pages/item/ItemsConfig'
 import ItemById from '../components/admin_pages/item/ItemById'
 

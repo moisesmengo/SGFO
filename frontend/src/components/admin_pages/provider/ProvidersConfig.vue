@@ -14,7 +14,7 @@
                         <NewProvider/>
                     </b-tab>
                     <b-tab title="Bloqueios">
-                        
+                        <Blocks/>
                     </b-tab>
                 </b-tabs>
             </b-card>
@@ -22,13 +22,14 @@
     </div>
 </template>
 <script>
-import Titles from '../template/Titles'
-import Providers from '../admin_pages/Providers'
-import NewProvider from '../admin_pages/NewProvider'
+import Titles from '../../template/Titles'
+import Providers from './Providers'
+import NewProvider from './NewProvider'
+import Blocks from './Blocks'
 
 export default {
     name: 'ProvidersConfig',
-    components: { Titles, Providers, NewProvider  }
+    components: { Titles, Providers, NewProvider, Blocks }
 }
 </script>
 <style lang="css">

@@ -129,7 +129,9 @@ export default {
         }
     },
     methods:{
-       
+        reset(){
+            this.fornecedor = {}
+        },
         save(){
             axios.post(`${ baseApiUrl }/fornecedores`, this.fornecedor)
                 .then(() => {

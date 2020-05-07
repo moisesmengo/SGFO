@@ -2,7 +2,7 @@
 	<div id="app" :class="{'hide-menu': !isMenuVisible || !user , 'isNav': !isMenuVisible && !user}">
 		<Header title="Sistema de Fornecimento" 
 			:hideToggle="!user"/>
-		<Nav v-if="!user"/>
+		<Nav v-show="!user"/>
 		<Menu v-if="user"/>
 		<Loading v-if="validatingToken || validatingTokenProvider"/>
 		<Content v-else/>

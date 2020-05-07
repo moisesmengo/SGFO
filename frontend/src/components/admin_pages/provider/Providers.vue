@@ -132,8 +132,8 @@
     </div>
 </template>
 <script>
-import { baseApiUrl, showError } from '../../global'
-import '../../asets/animations/slide-fade.css'
+import { baseApiUrl, showError } from '../../../global'
+import '../../../asets/animations/slide-fade.css'
 import axios from 'axios'
 export default {
     name: 'Providers',
@@ -158,9 +158,10 @@ export default {
         }
     },
     methods:{
+        
         loadProviders(){
             const url = `${baseApiUrl}/fornecedores?page=${this.page}`
-            axios.get(url).then(res => {
+            axios.get(url).then(res => {           
                 this.fornecedores = res.data.data
                 this.count = res.data.count
                 this.limit = res.data.limit
