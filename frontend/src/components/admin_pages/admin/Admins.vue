@@ -103,8 +103,8 @@
 </template>
 <script>
 import axios from 'axios'
-import { baseApiUrl, showError } from '../../global'
-import '../../asets/animations/slide-fade.css'
+import { baseApiUrl, showError } from '../../../global'
+import '../../../asets/animations/slide-fade.css'
 export default {
     name: 'Admins',
     data() {

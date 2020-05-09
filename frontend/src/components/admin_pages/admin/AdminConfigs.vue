@@ -19,9 +19,9 @@
     </div>
 </template>
 <script>
-import Titles from '../template/Titles'
-import AdminData from '../admin_pages/AdminData'
-import Admins from '../admin_pages/Admins'
+import Titles from '../../template/Titles'
+import AdminData from './AdminData'
+import Admins from './Admins'
 export default {
     name: 'AdminConfigs',
     components: { Titles, AdminData, Admins }

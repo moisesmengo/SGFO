@@ -3,7 +3,7 @@
         <h3>Cadastrar Fornecedor</h3>
         <hr>
         <b-form>
-            <input id="admin-id" type="hidden" v-model="fornecedor.id"/>
+            <input id="provider-id" type="hidden" v-model="fornecedor.id"/>
             <b-row>
                 <b-col md="6" sm="12">
                     <b-form-group label="Nome do Estabelecimento: *" label-for="estabelecimento">
@@ -101,13 +101,7 @@
                         />
                     </b-form-group>
                 </b-col>
-                <b-col md="6" sm="12">
-                    <b-form-group label="Status:" >
-                        <b-form-select v-model="fornecedor.bloqueado" :options='status'>
-                        
-                        </b-form-select>
-                    </b-form-group>
-                </b-col>
+                <input type="hidden" :v-model="fornecedor.bloqueado = false">
             </b-row>
             <b-row>
                 <b-col xs="12">
@@ -132,6 +126,7 @@ export default {
     name: 'NewProvider',
     data() {
         return {
+           value: false,
            fornecedor: {},
            states:[
                {value: "AC", text: 'AC'},
@@ -173,7 +168,7 @@ export default {
             this.fornecedor = {}
         },
         save(){
-            axios.post(`${baseApiUrl}/fornecedores`, this.fornecedor)
+            axios.post(`${baseApiUrl}/fornecedores`, this.fornecedor)           
                 .then(() =>{
                     this.$toasted.global.defaultSuccess()
                     this.reset()

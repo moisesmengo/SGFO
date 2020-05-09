@@ -7,15 +7,12 @@ import AdminAuth from '../components/home_pages/AdminAuth'
 import Contact from '../components/home_pages/Contact'
 import About from '../components/home_pages/About'
 
-import Admins from '../components/admin_pages/Admins'
-import AdminConfigs from '../components/admin_pages/AdminConfigs'
+import Admins from '../components/admin_pages/admin/Admins'
+import AdminConfigs from '../components/admin_pages/admin/AdminConfigs'
 import ProvidersConfig from '../components/admin_pages/provider/ProvidersConfig'
 import ItemsConfig from '../components/admin_pages/item/ItemsConfig'
 import ItemById from '../components/admin_pages/item/ItemById'
-
-import Solicitations from '../components/provider_pages/Solicitations'
-
-import {adminKey} from '../global'
+import Requests from '../components/admin_pages/solicitacao/Requests'
 
 Vue.use(VueRouter)
 
@@ -51,10 +48,6 @@ const routes = [{
         component: Admins,
         //meta: {requiresAdmin: true}
     }, {
-        name: 'solicitacoes',
-        path: '/minhas-solicitacoes',
-        component: Solicitations
-    }, {
         name: 'configuracoesFornecedores',
         path: '/gerencia-fornecedores',
         component: ProvidersConfig
@@ -66,6 +59,10 @@ const routes = [{
         name: 'itemId',
         path: '/itens/:id',
         component: ItemById
+    }, {
+        name: 'solicitacoes',
+        path: '/solicitacoes',
+        component: Requests
     }
 ]
 

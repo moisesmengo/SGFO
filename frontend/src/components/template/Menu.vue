@@ -34,6 +34,14 @@
                         </div>
                     </router-link>
                 </li>
+                <li>
+                    <router-link to="/solicitacoes">
+                        <div class="content-list-menu">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <p>Solicitações</p>
+                        </div>
+                    </router-link>
+                </li>
             </ul>
 
             <ul v-if="fornecedor">
@@ -42,14 +50,6 @@
                         <div class="content-list-menu">
                             <i class="material-icons">home</i>
                             <p>Início</p>
-                        </div>
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="/minhas-solicitacoes">
-                        <div class="content-list-menu">
-                            <i class="material-icons">list</i>
-                            <p>Solicitacoes</p>
                         </div>
                     </router-link>
                 </li>
@@ -63,17 +63,14 @@
                 </li>
             </ul>
             <hr v-if="fornecedor">
-            <ModalNew v-if="fornecedor" />
         </div>
     </aside>
 </template>
 <script>
 import { mapState } from 'vuex'
-import ModalNew from '../provider_pages/ModalNew'
 
 export default {
     name: 'Menu',
-    components: {ModalNew},
     computed:{
         ...mapState(['isMenuVisible', 'admin', 'fornecedor']),
     },

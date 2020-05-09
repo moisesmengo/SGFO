@@ -98,9 +98,9 @@
 </template>
 <script>
 
-import { mapState, mapMutations } from 'vuex'
+import { mapState} from 'vuex'
 import axios from 'axios'
-import { baseApiUrl, showError} from '../../App'
+import { baseApiUrl, showError} from '../../../global'
 export default {
     name: 'AdminData',
     computed:{
