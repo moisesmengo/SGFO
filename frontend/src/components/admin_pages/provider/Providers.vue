@@ -196,18 +196,6 @@ export default {
 }
 </script>
 <style lang="css">
-    .image-and-name{
-        background-color: rgba(107, 106, 106, 0.103);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        border-radius: 8px;
-    } 
-    .image-and-name span{
-        margin-top: 10px;
-    }
     .content-table-provider {
         display: flex;
         flex-direction: column;

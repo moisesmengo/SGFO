@@ -25,7 +25,7 @@ module.exports = app =>{
             email: admin.email,
             admin: admin.admin,
             iat: now,
-            exp: now + (60 * 60 * 24 * 3)
+            exp: now + (60 * 60 * 24 * 10)
         }
 
         res.json({
