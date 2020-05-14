@@ -1,6 +1,25 @@
 module.exports = app => {
     const limit = 10
     const { existsOrError } = app.api.validation
+
+    const acept = (req, res) =>{
+        const request ={
+            id: req.body.id,
+            bloqueado: req.body.bloqueado
+        }
+        
+        if(req.params.id) request.id = req.params.id
+
+        if(request.id){
+            app.db('fornecedores')
+                .select('bloqueado')
+                .update(request)
+                .where({id: request.id})
+                .then(_ => res.status(204).send())
+                .catch(err => res.status(500).send(err))
+        }
+
+    }
     
     const get = async (req, res) => {
         const page = req.query.page || 1
@@ -34,5 +53,5 @@ module.exports = app => {
         }
     }
 
-    return {get, remove}
+    return {get, remove, acept}
 }

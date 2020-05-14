@@ -64,6 +64,7 @@
                                 />
                             </b-form-group>
                         </b-col>
+                        <input type="hidden" :v-model="fornecedor.bloqueado = false">
                     </b-row>
                     <b-row>
                         <b-col md="6" sm="12">
@@ -176,6 +177,22 @@ export default {
             axios.get(`${baseApiUrl}/fornecedores/${fornecedor.id}`)
                 .then(res=> this.fornecedor = res.data)
         },
+        acept(){
+            const id = this.fornecedor.id
+            axios.put(`${baseApiUrl}/solicitacoes/${id}`, this.fornecedor)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                    this.reset()
+                }).catch(showError)
+        },
+        remove(){
+            const id = this.fornecedor.id
+            axios.delete(`${baseApiUrl}/solicitacoes/${id}`, this.fornecedor)
+                .then(()=>{
+                    this.$toasted.global.defaultSuccess()
+                    this.reset()
+                }).catch(showError)
+        }
     },
     watch:{
         page(){

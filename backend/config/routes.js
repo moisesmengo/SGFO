@@ -30,6 +30,7 @@ module.exports = app =>{
     
     app.route('/solicitacoes/:id')
         .delete(app.api.request.remove)
+        .put(app.api.request.acept)
 
     app.route('/fornecedores/:id')
         .all(app.config.passport.authenticate())
