@@ -36,6 +36,7 @@ export default {
         list-style: none;
         margin: 0;
         padding: 0;
+        height: 100%;
     }
     .nav-menu nav ul{
         display: flex;
@@ -56,13 +57,19 @@ export default {
     }
     .nav-menu nav a{
         display: block;
-        padding: 15px;
+        padding-left: 15px;
+        padding-right: 10px;
+        line-height: 40px;
         text-decoration: none;
         text-transform: uppercase;
         color:rgb(58, 57, 59) ;
         font-family: Lato;
     }
-    
+
+    .nav-menu nav ul li a:hover{
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
     @media (max-width: 500px){
         .nav-menu nav{
             justify-content: center;
