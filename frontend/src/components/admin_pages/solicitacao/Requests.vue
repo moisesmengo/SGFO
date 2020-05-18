@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="table-provider">
-                    <b-table 
+                    <b-table
                         hover striped 
                         :items="fornecedores" 
                         :fields="fields">
@@ -122,7 +122,8 @@
                         </template>
                     </b-table>
                 </div>
-                <div class="content-pages-provider">
+                
+                <div class="content-pages-provider" >
                     <b-pagination size="md"
                         v-model="page"
                         :total-rows="count"
@@ -139,7 +140,6 @@ import '../../../asets/animations/slide-fade.css'
 import axios from 'axios'
 export default {
     name: 'Providers',
-    components:{ },
     data() {
         return {
             show: true,

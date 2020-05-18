@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('admins', table => {
     table.increments('id').primary()
@@ -6,7 +5,6 @@ exports.up = function(knex, Promise) {
     table.string('email').notNull().unique()
     table.string('senha').notNull()
     table.timestamp('deletedAt')
-    table.string('imagemUrl')
   })
 };
 
