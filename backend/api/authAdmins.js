@@ -12,6 +12,10 @@ module.exports = app =>{
             .where({ email: req.body.email })
             .first()
 
+        if (admin.deletedAt) {
+            return res.status(400).send('Sua conta encotra-se bloqueada')
+        }
+
         if (!admin) return res.status(400).send('admin não encontrado!')
 
         const isMatch = bcrypt.compareSync(req.body.senha, admin.senha)

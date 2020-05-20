@@ -23,7 +23,10 @@ module.exports = app =>{
         .post(app.api.provider.save)
 
     app.route('/bloqueios')
-        .get(app.api.provider.getBlocks)
+        .get(app.api.blocks.getBlocksProvider)
+    
+    app.route('/exclusoes')
+        .get(app.api.blocks.getRemovedsAdmin)
     
     app.route('/solicitacoes')
         .get(app.api.request.get)

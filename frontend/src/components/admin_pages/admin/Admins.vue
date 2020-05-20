@@ -105,6 +105,7 @@
 import axios from 'axios'
 import { baseApiUrl, showError } from '../../../global'
 import '../../../asets/animations/slide-fade.css'
+import {mapState} from 'vuex'
 export default {
     name: 'Admins',
     data() {
@@ -121,8 +122,12 @@ export default {
             page: 1,
             limit: 0,
             count: 0,
+            o: 'buceta'
         }
     }, 
+    computed:{
+        ...mapState({ adm: 'admin'})
+    },
     methods:{
         loadAdmins(){
             const url = `${baseApiUrl}/admins?page=${this.page}`
@@ -167,6 +172,7 @@ export default {
     },
     mounted(){
         this.loadAdmins()
+        console.log(this.adm)
     }, 
 }
 </script>

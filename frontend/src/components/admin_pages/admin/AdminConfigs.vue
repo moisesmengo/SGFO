@@ -13,6 +13,9 @@
                     <b-tab title="Administradores">
                         <Admins/>
                     </b-tab>
+                    <b-tab title="Exclusões">
+                        <AdminsRemoveds/>
+                    </b-tab>
                 </b-tabs>
             </b-card>
        </div>
@@ -22,9 +25,10 @@
 import Titles from '../../template/Titles'
 import AdminData from './AdminData'
 import Admins from './Admins'
+import AdminsRemoveds from './AdminsRemoveds'
 export default {
     name: 'AdminConfigs',
-    components: { Titles, AdminData, Admins }
+    components: { Titles, AdminData, Admins, AdminsRemoveds }
 }
 </script>
 <style lang="css">

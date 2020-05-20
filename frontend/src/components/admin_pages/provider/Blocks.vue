@@ -27,7 +27,6 @@ export default {
             axios.get(`${baseApiUrl}/bloqueios?page=${this.page}`, this.bloqueados)
                 .then(res => {
                     this.bloqueados = res.data.data
-                    console.log(this.bloqueados)
                     this.count = res.data.count
                     this.limit = res.data.limit
                 })
