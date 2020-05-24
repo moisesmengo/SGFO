@@ -13,6 +13,9 @@ import ProvidersConfig from '../components/admin_pages/provider/ProvidersConfig'
 import ItemsConfig from '../components/admin_pages/item/ItemsConfig'
 import ItemById from '../components/admin_pages/item/ItemById'
 import Requests from '../components/admin_pages/solicitacao/Requests'
+import EntryItems from '../components/admin_pages/item/EntryItems'
+
+import ProviderConfig from '../components/provider_pages/ProviderConfig'
 
 Vue.use(VueRouter)
 
@@ -63,6 +66,14 @@ const routes = [{
         name: 'solicitacoes',
         path: '/solicitacoes',
         component: Requests
+    }, {
+        name: 'fornecedor-configuracoes',
+        path: '/minhas-configuracoes',
+        component: ProviderConfig
+    }, {
+        name: 'entrada-de-itens',
+        path: '/entradas',
+        component: EntryItems
     }
 ]
 

@@ -42,6 +42,14 @@
                         </div>
                     </router-link>
                 </li>
+                <li>
+                    <router-link to="/entradas">
+                        <div class="content-list-menu">
+                            <i class="material-icons">trending_flat</i>
+                            <p>Entrada de ítens</p>
+                        </div>
+                    </router-link>
+                </li>
             </ul>
 
             <ul v-if="fornecedor">
@@ -54,7 +62,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/fornecedores">
+                    <router-link to="/minhas-configuracoes">
                         <div class="content-list-menu">
                             <i class="material-icons">settings</i>
                             <p>Configurações</p>
@@ -62,7 +70,6 @@
                     </router-link>
                 </li>
             </ul>
-            <hr v-if="fornecedor">
         </div>
     </aside>
 </template>

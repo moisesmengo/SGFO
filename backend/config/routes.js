@@ -49,4 +49,12 @@ module.exports = app =>{
         .get(app.api.items.getById)
         .put(app.api.items.save)
         .delete(app.api.items.remove)
+
+    app.route('/entradas')
+        .post(app.api.entry.save)
+        .get(app.api.entry.get)
+
+    app.route('/entradas/:id')
+        .get(app.api.entry.getById)
+        .put(app.api.entry.save)
 }
